@@ -1,0 +1,92 @@
+-=[ Guia de Projeto ]=-
+
+   Utilizador pode ter:
+      Publicações
+      Seguidores
+      Seguindo
+      Foto de Perfil
+      Nome Próprio
+      Nickname
+      Descrição
+
+   Utilizador pode fazer:
+      Colocar Publicações
+      Gostar de Publicações
+      Comentar Publicações
+      Seguir Pessoas
+
+
+-=[ Esquema de Base de Dados ]=-
+
+-= Simbolos =-
+
+   * = Chave Primária.
+   ! = Chave Externa, Relação Conforme Indicação Em Baixo.
+   1 = Principal.
+   2 = Externo.
+
+
+-= Base de Dados =-
+
+   Utilizador
+      *Key_Utilizador
+         BIGINT
+         AUTO_INCREMENT
+      NomeUnico
+         VARCHAR(20)
+         UNIQUE
+      Nome
+         VARCHAR(30)
+      Email
+         VARCHAR(255)
+      Password
+         VARCHAR(255)
+      FotoPerfil
+         MEDIUMBLOB
+      Descricao
+         VARCHAR(255)
+
+   Seguidor
+      *!Key_Utilizador
+         BIGINT
+         1(Utilizador.Key_Utilizador)
+      *!Key_Seguidor
+         BIGINT
+         2(Utilizador.Key_Utilizador)
+
+   Seguindo
+      *!Key_Utilizador
+         BIGINT
+         1(Utilizador.Key_Utilizador)
+      *!Key_Seguindo
+         BIGINT
+         2(Utilizador.Key_Utilizador)
+
+   Publicacao
+      *Key_Publicacao
+         BIGINT
+      Publicacao
+         MEDIUMBLOB
+      !Key_Utilizador
+         BIGINT
+         1(Utilizador.Key_Utilizador)
+
+   Gosto
+      *!Key_Publicacao
+         BIGINT
+         1(Publicacao.Key_Publicacao)
+      *!Key_Utilizador
+         BIGINT
+         2(Publicacao.Key_Utilizador)
+
+   Comentario
+      *Key_Comentario
+         BIGINT
+      !Key_Publicacao
+         BIGINT
+         1(Publicacao.Key_Publicacao)
+      !Key_Utilizador
+         BIGINT
+         2(Utilizador.Key_Utilizador)
+      Comentario
+         VARCHAR(255)
