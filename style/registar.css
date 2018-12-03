@@ -18,6 +18,10 @@ h1, h2, h3 {
    text-align: center;
 }
 
+h1:hover , h2:hover , h3:hover {
+   text-shadow: 1px 1px 2px #111111, 0 0 1em #111111, 0 0 0.2em #111111;
+}
+
 .div-esquerda {
    float: left;
    height: 100%;
@@ -52,7 +56,8 @@ img {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  width: 225px;
+  max-width: 300px;
+  width: 75%;
   margin: 0.2em;
   padding: 0 15px 0 46px;
   border: none;
@@ -71,13 +76,20 @@ img {
    width: 100%;
 }
 
-table {
-   
-}
-
 table tr td h3 {
    font-size: 12px;
    text-align: right;
+}
+
+.div-form-registar {
+   max-width: 300px;
+   width: 90%;
+   margin: auto 10px;
+   position: relative;
+   top: 50%;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, -50%);
 }
 
 .button-facebook:before {

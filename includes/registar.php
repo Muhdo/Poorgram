@@ -16,27 +16,12 @@
       <div class="div-direita">
          <div class="div-conteudo">
             <form class="div-form-registar" action="" method="post">
-               <table>
-                  <tr>
-                     <td><h3>Nome:</h3></td>
-                     <td><input class="form-input" id="nome" type="text" name="nome" placeholder="Ex: Jossefino Andrade"></td>
-                  </tr>
-                  <tr>
-                     <td><h3>Identificador:</h3></td>
-                     <td><input class="form-input" id="identificador" type="text" name="Identificador" placeholder="Ex: @__xXJosefino420Xx__"></td>
-                  </tr>
-                  <tr>
-                     <td><h3>Email:</h3></td>
-                     <td><input class="form-input" id="email" type="text" name="Email" placeholder="Ex: JossefinoAndrade420@gamaile.come"></td>
-                  </tr>
-                  <tr>
-                     <td><h3>Password:</h3></td>
-                     <td><input class="form-input" id="password" type="text" name="Password" placeholder="Ex: ************"></td>
-                  </tr>
-                  <tr>
-                     <button class="button-facebook" id="facebook" type="button" name="fb" onClick="mudarNome()">Login com Facebook</button>
-                  </tr>
-               </table>
+               <button class="button-facebook" id="facebook" type="button" onClick="mudarNome()">Login com Facebook</button>
+               <input class="form-input" id="nome" type="text" name="nome" placeholder="Nome Ex: Jossefino Andrade">
+               <input class="form-input" id="identificador" type="text" name="Identificador" placeholder="Nickname Ex: __xXJosefino420Xx__">
+               <input class="form-input" id="email" type="text" name="Email" placeholder="Email Ex: JossefinoAndrade420@gamaile.come">
+               <input class="form-input" id="password" type="password" name="Password" placeholder="Palavra-Passe Ex: ************">
+               <input class="form-button" id="submit" type="submit" name="Registar" value="Registar">
             </form>
          </div>
       </div>
@@ -44,7 +29,7 @@
 
    <script>
       function mudarNome() {
-         document.getElementById("facebook").innerHTML = "Isto não funciona ok?"
+         document.getElementById("facebook").innerHTML = "Esquece, não funfa!"
       }
    </script>
 </body>
