@@ -147,6 +147,10 @@ table tr td h3 {
    border-radius: 0.2em;
    font-size: 16px;
    color: #333333;
-   background-color: #EEEEEE;
-   background-image: linear-gradient(#EEEEEE, #CCCCCC);
+   background-color: #CCCCCC;
+}
+
+.form-button:hover, .form-button:focus {
+   background-color: #DDDDDD;
+   outline: none;
 }

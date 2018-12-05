@@ -15,12 +15,13 @@
       </div>
       <div class="div-direita">
          <div class="div-conteudo">
-            <form class="div-form-registar" action="" method="post">
+            <form class="div-form-registar" name="form-registar" action="action_registar.php" method="POST">
                <button class="button-facebook" id="facebook" type="button" onClick="mudarNome()">Login com Facebook</button>
                <input class="form-input" id="nome" type="text" name="nome" placeholder="Nome Ex: Jossefino Andrade">
                <input class="form-input" id="identificador" type="text" name="Identificador" placeholder="Nickname Ex: __xXJosefino420Xx__">
                <input class="form-input" id="email" type="text" name="Email" placeholder="Email Ex: JossefinoAndrade420@gamaile.come">
                <input class="form-input" id="password" type="password" name="Password" placeholder="Palavra-Passe Ex: ************">
+               <input class="form-input" id="repPassword" type="password" name="RepPassword" placeholder="Repetir Palavra-Passe Ex: ************">
                <input class="form-button" id="submit" type="submit" name="Registar" value="Registar">
                <a href="#">Login</a>
             </form>

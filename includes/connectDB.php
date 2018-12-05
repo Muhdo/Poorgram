@@ -1,8 +1,8 @@
 <?php
-   $dbServerName = "localhost";
-   $dbUsername = "root";
-   $dbPassword = "";
-   $dbName = "poorgram";
+   $connection = new mysqli("localhost", "root", "", "poorgram");
 
-   $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
+   if (mysqli_connect_errno()) {
+      printf("Impossivel ligar á base de dados");
+      exit();
+   }
 ?>
