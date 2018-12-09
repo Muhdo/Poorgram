@@ -1,8 +1,10 @@
 <?php
-   $connection = new mysqli("localhost", "root", "", "poorgram");
-
-   if (mysqli_connect_errno()) {
-      printf("Impossivel ligar á base de dados");
-      exit();
+   try {
+   $connection = new PDO("mysql:host=localhost;dbname=poorgram", "root", "");
+   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   }
+   catch(PDOException $e)
+   {
+   echo "A conexão falhou!: " . $e->getMessage();
    }
 ?>
