@@ -1,3 +1,9 @@
+html, body{
+	padding: 0px;
+	margin: 0px;
+	font-family: sans-serif;
+	font-weight: 200;
+}
 body {
    background: #696969;
    padding: 0px;
@@ -21,6 +27,7 @@ h1 {
 
 h1, h2, h3 {
    text-align: center;
+   color: #EEEEEE;
 }
 
 h1:hover , h2:hover , h3:hover {
@@ -60,7 +67,7 @@ img {
    top: 50%;
    left: 50%;
    margin-right: -50%;
-   transform: translate(-50%, -50%);
+   transform: translate(-50%, -0%);
    max-width: 300px;
    width: 75%;
    margin: 0.2em;
@@ -86,15 +93,15 @@ table tr td h3 {
    text-align: right;
 }
 
-.div-form-registar {
+.div-form {
    max-width: 300px;
    width: 90%;
    margin: auto 10px;
    position: relative;
-   top: 50%;
+   top: 70%;
    left: 50%;
    margin-right: -50%;
-   transform: translate(-50%, -50%);
+   transform: translate(-50%, 0%);
 }
 
 .button-facebook:before {

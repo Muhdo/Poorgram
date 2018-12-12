@@ -14,11 +14,12 @@
 
       $queryProcurarNickname->bindParam(":Nickname", $nickname, PDO::PARAM_STR); //Associar a variavel com o campo na query
       $queryProcurarNickname->execute();
+      var_dump($queryProcurarNickname->fetch());
 
       if ($queryProcurarNickname->rowCount() > 0) { //Verificar se existe algum resultado
          $queryProcurarNickname->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
 
-         header("location:javascript://history.go(-1)"); //Voltar para a página anterior
+         $pagina_salto = "../registar.php?erronickname"; header(sprintf("Location: %s", $pagina_salto));  //Voltar para a página anterior
          exit();
       }
       else {
@@ -63,13 +64,6 @@
             }
          }
       }
-
-      /*
-      $queryInserir->bindParam(":Nickname", $nickname, PDO::PARAM_STR);
-      $queryInserir->bindParam(":Nome", $nome, PDO::PARAM_STR);
-      $queryInserir->bindParam(":Email", $email, PDO::PARAM_STR);
-      $queryInserir->bindParam(":Password", $password, PDO::PARAM_STR);
-      */
    }
    else {
       echo "Erro a carregar!";

@@ -7,7 +7,7 @@
    </head>
    <body>
       <?php
-         include_once("includes/registar.php");
+         header("Location: registar.php");
        ?>
    </body>
 </html>
