@@ -1,6 +1,8 @@
 header {
    height: 70px;
    width: 100%;
+   margin: 0px;
+   padding: 0px; 
    background-color: #1b1b1b;
    position: fixed;
    top: 0;

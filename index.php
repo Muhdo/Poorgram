@@ -7,7 +7,14 @@
    </head>
    <body>
       <?php
-         header("Location: registar.php");
+         session_start();
+
+         if (!isset($_SESSION["User_Id"])) {
+            header("Location: registar.php");
+         }
+         elseif(isset($_SESSION["User_Id"])) {
+            header("Location: main.php");
+         }
        ?>
    </body>
 </html>
