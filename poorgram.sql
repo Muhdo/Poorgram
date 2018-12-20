@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Dez-2018 às 20:26
+-- Generation Time: 19-Dez-2018 às 19:45
 -- Versão do servidor: 10.1.37-MariaDB
 -- versão do PHP: 7.2.12
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `instagram`
+-- Database: `poorgram`
 --
 
 -- --------------------------------------------------------
@@ -55,7 +55,8 @@ CREATE TABLE `gosto` (
 CREATE TABLE `publicacao` (
   `Key_Publicacao` bigint(20) NOT NULL,
   `Publicacao` mediumblob NOT NULL,
-  `Key_Utilizador` bigint(20) NOT NULL
+  `Key_Utilizador` bigint(20) NOT NULL,
+  `Data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -95,6 +96,13 @@ CREATE TABLE `utilizador` (
   `FotoPerfil` mediumblob,
   `Descricao` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `utilizador`
+--
+
+INSERT INTO `utilizador` (`Key_Utilizador`, `NomeUnico`, `Nome`, `Email`, `Password`, `FotoPerfil`, `Descricao`) VALUES
+(1, 'Muhdo', 'Gabriel Valente', 'gabrielmcv1@gmail.com', '$2y$10$ghAVH7gAmVHa6Fv9TC4j4OiNoJEF.G5rclSvymSbFY3Ui2eUMePRa', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -166,7 +174,7 @@ ALTER TABLE `publicacao`
 -- AUTO_INCREMENT for table `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `Key_Utilizador` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `Key_Utilizador` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

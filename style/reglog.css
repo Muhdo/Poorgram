@@ -17,7 +17,14 @@ main {
 
 a {
    text-decoration: none;
+   color: #BEBEBE;
+	transition: color 0.3s;
+}
+
+a:hover {
+   text-decoration: none;
    color: #EEEEEE;
+	transition: color 0.3s;
 }
 
 h1 {
@@ -27,6 +34,7 @@ h1 {
 h1, h2, h3 {
    text-align: center;
    color: #EEEEEE;
+	transition: text-shadow 0.3s;
 }
 
 h1:hover , h2:hover , h3:hover {
@@ -59,6 +67,32 @@ h1:hover , h2:hover , h3:hover {
 img {
    width: 100%;
    margin: auto;
+	animation: dessombrear 0.3s;
+}
+
+img:hover {
+	animation: sombrear 0.3s;
+	filter: drop-shadow(0 0 1em #111111);
+}
+
+@keyframes sombrear {
+	0% {
+	  filter: drop-shadow(0 0 0em #111111);
+  	}
+
+  	100% {
+   	filter: drop-shadow(0 0 1em #111111);
+  	}
+}
+
+@keyframes dessombrear {
+  	0% {
+    	filter: drop-shadow(0 0 1em #111111);
+  	}
+
+  	100% {
+    	filter: drop-shadow(0 0 0em #111111);
+  	}
 }
 
 .button-facebook {
@@ -142,14 +176,6 @@ table tr td h3 {
    background-color: #EEEEEE;
 }
 
-.form-input-correto {
-   box-shadow: inset 0px 0px 0px 2px #00FF00;
-}
-
-.form-input-erro {
-	box-shadow: inset 0px 0px 0px 2px #FF0000;
-}
-
 .form-button {
    box-sizing: content-box;
    max-width: 300px;
@@ -163,6 +189,7 @@ table tr td h3 {
    font-size: 16px;
    color: #333333;
    background-color: #CCCCCC;
+	transition: background-color 0.3s;
 }
 
 .form-button:hover, .form-button:focus {

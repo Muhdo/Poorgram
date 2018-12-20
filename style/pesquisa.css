@@ -1,0 +1,76 @@
+a {
+   text-decoration: none;
+}
+
+.utilizador {
+   width: inherit;
+   background-color: #595959;
+   margin: 10px auto;
+   padding: 5px;
+   font-family: sans-serif;
+   border-radius: 5px;
+}
+
+.utilizador .div-account {
+   width: 100%;
+   padding-bottom: 5px;
+   align-items: center;
+   display: flex;
+}
+
+.utilizador .div-account .img-account {
+   height: 50px;
+   width: 50px;
+   border-radius: 50%;
+}
+
+.utilizador .div-account .p-name {
+   width: 20%;
+   margin-left: 5px;
+   margin-right: 10px;
+   color: #BEBEBE;
+   text-decoration: none;
+   font-weight: bold;
+   transition: color 0.3s;
+}
+
+.utilizador .div-account .a-account {
+   width: 20%;
+   color: #BEBEBE;
+   text-decoration: none;
+   transition: color 0.3s;
+}
+
+.utilizador .div-account .a-account:hover {
+   color: #FEFEFE;
+   transition: color 0.3s;
+}
+
+.utilizador .div-account div {
+   width: 90%;
+   margin-right: 10px;
+   display: flex;
+   justify-content: flex-end;
+}
+
+.utilizador .div-account div .button-conta {
+   box-sizing: content-box;
+   max-width: 300px;
+   width: 100px;
+   margin: 0.2em;
+   border: none;
+   text-align: center;
+   line-height: 34px;
+   white-space: nowrap;
+   border-radius: 0.2em;
+   font-size: 16px;
+   color: #333333;
+   background-color: #CCCCCC;
+	transition: background-color 0.3s;
+}
+
+.utilizador .div-account div .button-conta:hover {
+   background-color: #DDDDDD;
+   outline: none;
+	transition: background-color 0.3s;
+}

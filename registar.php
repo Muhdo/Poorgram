@@ -4,6 +4,15 @@
 </head>
 
 <body>
+   <?php
+   session_start();
+
+   if (isset($_SESSION["User_Id"])) {
+      header("Location: index.php");
+   }
+   elseif(!isset($_SESSION["User_Id"])) {
+   ?>
+
    <main>
       <div class="div-esquerda">
          <div class="div-conteudo">
@@ -16,8 +25,6 @@
       </div>
 
       <?php
-         session_start();
-
          $nome = "";
          $nickname = "";
          $email = "";
@@ -82,4 +89,7 @@
          document.getElementById("facebook").innerHTML = "Esquece, não funfa!";
       }
    </script>
+<?php
+   }
+?>
 </body>
