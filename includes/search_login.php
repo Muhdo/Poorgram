@@ -18,7 +18,6 @@
          $queryLogin->closeCursor();
          $connection = null;
 
-         echo "Erro meu filho";
       } elseif ($queryLogin->rowCount() == 1) { //Existe um resultado
          $row = $queryLogin->fetchAll(PDO::FETCH_ASSOC); //Ler o resultado
 
@@ -26,7 +25,6 @@
          $hashedPasswordCheck = password_verify($password, $row[0]["Password"]);
 
          if ($hashedPasswordCheck == FALSE) {
-            echo "Erro meu filho";
             exit();
          } elseif ($hashedPasswordCheck == TRUE) {
             //Iniciar sessão
@@ -42,8 +40,6 @@
             //Fechar conexões
             $queryLogin->closeCursor();
             $connection = null;
-
-            echo "Esta budega devia de dar";
 
             header("Location: ../index.php");
          }

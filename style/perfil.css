@@ -1,0 +1,161 @@
+a {
+   text-decoration: none;
+   color: #111111;
+}
+
+.utilizador {
+   height: 250px;
+   background-color: #797979;
+   margin-top: -10px;
+}
+
+.div-ident {
+   width: 70%;
+   height: 100%;
+   margin-right: 0px;
+   display: inline-block;
+}
+
+.div-profile-pic {
+   height: 100%;
+   width: 200px;
+   margin-left: 10px;
+   display: flex;
+   align-content: center;
+   float: left;
+}
+
+.img-profile {
+   height: 200px;
+   width: 200px;
+   margin: auto;
+   border-radius: 50%;
+}
+
+.div-profile-text {
+   height: 100%;
+   width: auto;
+   float: left;
+   text-align: left;
+   margin-left: 10px;
+}
+
+.h2-nickname {
+   width: auto;
+   font-weight: lighter;
+   text-align: left;
+   position: relative;
+   top: 25%;
+   margin-right: 15px;
+}
+
+.h3-nome {
+   width: auto;
+   text-align: left;
+   position: relative;
+   top: 25%;
+   margin-right: 15px;
+}
+
+.div-descricao {
+   height: auto;
+   width: 100%;
+   position: relative;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.div-descricao p {
+   height: auto;
+   margin: auto;
+   margin-right: 10px;
+}
+
+.div-stats {
+   width: 30%;
+   height: 24  0px;
+   float: right;
+   padding-top: 10px;
+}
+
+.div-stats-followers {
+   width: calc(100% / 3);
+   float: left;
+}
+
+.div-stats-following {
+   width: calc(100% / 3);
+   float: left;
+}
+
+.div-stats-posts {
+   width: calc(100% / 3);
+   float: left;
+}
+
+.text, .value {
+   margin: auto;
+   margin-bottom: 5px;
+}
+
+.text {
+   font-weight: lighter;
+}
+
+.div-buttons {
+   height: auto;
+   width: 100%;
+   float: right;
+   margin-top: 20px;
+}
+
+.div-buttons .a-button {
+   display: inline-block;
+   padding: 2px;
+   width: 90%;
+   border: none;
+   text-align: center;
+   line-height: 34px;
+   white-space: nowrap;
+   border-radius: 0.2em;
+   font-size: 16px;
+   color: #333333;
+   background-color: #CCCCCC;
+	transition: background-color 0.3s;
+}
+
+.div-buttons .a-button:hover {
+   background-color: #DDDDDD;
+   outline: none;
+	transition: background-color 0.3s;
+}
+
+.div-posts {
+   max-width: 93.5rem;
+   margin: 0 auto;
+   padding: 0 2rem;
+   margin-top: 30px;
+   padding-bottom: 10px;
+}
+
+.gallery {
+   display: flex;
+   flex-wrap: wrap;
+   margin: -1rem -1rem;
+   padding-bottom: 10px;
+}
+
+.gallery-item {
+   position: relative;
+   flex: 1 0 22rem;
+   margin: 1rem;
+   color: #fff;
+   cursor: pointer;
+}
+
+.gallery-image {
+   width: 100%;
+   height: 40%;
+   object-fit: cover;
+}

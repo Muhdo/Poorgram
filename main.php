@@ -16,7 +16,7 @@
 <body>
    <main>
       <?php
-         include("search_post.php");
+         include("search_feed.php");
       ?>
    </main>
 </body>

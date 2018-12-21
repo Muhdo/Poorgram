@@ -18,21 +18,19 @@
          if (is_null($resultado["FotoPerfil"])) {
             $imagem = "img/profile-picture.png";
          } else {
-            $imagem = $resultado["FotoPerfil"];
+            $imagem = 'data:image/jpeg;base64,'.base64_encode($resultado["FotoPerfil"]);
          }
 
-         for ($i=0; $i < 100; $i++) {
-            echo '<article class="utilizador">
-               <div class="div-account">
-                  <img class="img-account" src='.$imagem.'>
-                  <p class="p-name" href="#">'.$resultado["Nome"].'</p>
-                  <a class="a-account" href="#">'.$resultado["NomeUnico"].'</a>
-                  <div>
-                     <button class="button-conta" type="button">Visitar Perfil</button>
-                  </div>
+         echo '<article class="utilizador">
+            <div class="div-account">
+               <img class="img-account" src='.$imagem.'>
+               <p class="p-name">'.$resultado["Nome"].'</p>
+               <a class="a-account" href="perfil.php?'.$resultado["NomeUnico"].'">'.$resultado["NomeUnico"].'</a>
+               <div>
+                  <a class="button-conta" type="button" href="perfil.php?'.$resultado["NomeUnico"].'">Visitar Perfil</a>
                </div>
-            </article>';
-         }
+            </div>
+         </article>';
       }
    }
    exit();
