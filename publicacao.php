@@ -90,7 +90,7 @@
          </div>
 
          <?php
-            $queryComentarios = $connection->prepare("SELECT Comentario, NomeUnico FROM comentario INNER JOIN utilizador ON comentario.Key_Utilizador = utilizador.Key_Utilizador WHERE Key_Publicacao = :Key");
+            $queryComentarios = $connection->prepare("SELECT Comentario, NomeUnico FROM comentario INNER JOIN utilizador ON comentario.Key_Utilizador = utilizador.Key_Utilizador WHERE Key_Publicacao = :Key ORDER BY Key_Comentario LIMIT 10");
             $queryComentarios->bindParam(":Key", $url["query"], PDO::PARAM_STR);
             $queryComentarios->execute();
 
@@ -132,7 +132,7 @@
 
             var QuantComments = <?php echo $QuantComments; ?>;
 
-            $("#comentar").submit(function() {
+            $("#submit").click(function() {
                event.preventDefault();
                $.ajax({
                   type: 'POST',
