@@ -1,6 +1,7 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/main.css">
    <link rel="stylesheet" type="text/css" href="style/perfil.css">
+   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 
 <?php
@@ -44,7 +45,7 @@
 
    $queryLoadUser->closeCursor();
 
-   $queryCountFollowers = $connection->prepare("SELECT COUNT(Key_Seguidor) FROM seguidor WHERE Key_Utilizador = :Key");
+   $queryCountFollowers = $connection->prepare("SELECT COUNT(Key_Seguir) FROM seguir WHERE Key_Seguir = :Key");
    $queryCountFollowers->bindParam(":Key", $UserKey, PDO::PARAM_STR);
    $queryCountFollowers->execute();
    $resultado = $queryCountFollowers->fetchAll();
@@ -52,7 +53,7 @@
    $NumFollowers = $resultado[0][0];
    $queryCountFollowers->closeCursor();
 
-   $queryCountFollowing = $connection->prepare("SELECT COUNT(Key_Seguindo) FROM seguindo WHERE Key_Utilizador = :Key");
+   $queryCountFollowing = $connection->prepare("SELECT COUNT(Key_Seguir) FROM seguir WHERE Key_Utilizador = :Key");
    $queryCountFollowing->bindParam(":Key", $UserKey, PDO::PARAM_STR);
    $queryCountFollowing->execute();
    $resultado = $queryCountFollowing->fetchAll();
@@ -98,7 +99,23 @@
                <h4 class="value"><?php echo $NumPosts; ?></h4>
             </div>
             <div class="div-buttons">
-               <a class="a-button" href="#">Seguir</a>
+               <?php
+                  if ($UserKey == $_SESSION["User_Id"]) {
+                     echo '<a class="a-button" href="editar.php">Editar Perfil</a>';
+                  } else {
+                     $querySaberSegue = $connection->prepare("SELECT * FROM seguir WHERE Key_Utilizador = :Key AND Key_Seguir = :Seguir");
+                     $querySaberSegue->bindParam(":Key", $_SESSION["User_Id"], PDO::PARAM_STR);
+                     $querySaberSegue->bindParam(":Seguir", $UserKey, PDO::PARAM_STR);
+                     $querySaberSegue->execute();
+
+                     if ($querySaberSegue->rowCount() == 0) {
+                        echo "<a class='a-button' id='seguir'>Seguir</a>";
+                     }
+                     else {
+                        echo "<a class='a-button' id='naoseguir'>Deixar de Seguir</a>";
+                     }
+                  }
+               ?>
             </div>
          </div>
       </div>
@@ -113,7 +130,7 @@
                   $imagem = 'data:image/jpeg;base64,'.base64_encode($resultado["Publicacao"]);
                   $postkey = $resultado["Key_Publicacao"];
                   echo '<div class="gallery-item">
-                     <a href="post.php?'.$postkey.'">
+                     <a href="publicacao.php?'.$postkey.'">
                         <img class="gallery-image" src="'.$imagem.'">
                      </a>
          			</div>';
@@ -121,15 +138,44 @@
 
                if ($NumPosts % 3 != 0) {
                   for ($i=0; $i <= ($NumPosts % 3); $i++) {
-                     echo '<div class="gallery-item"></div>';
+                     echo '<div class="gallery-item-hidden"></div>';
                   }
                }
             ?>
          </div>
       </div>
    </main>
+
+   <script>
+      $(document).ready(function(){
+         $("#seguir").click(function() {
+            $.ajax({
+               type: 'POST',
+               data: { funcao: "Seguir",
+                  Seguir: <?php echo $UserKey;?> },
+               url: 'includes/seguir.php',
+               success: function(result){
+                     history.go(0);
+               }
+            });
+         });
+
+         $("#naoseguir").click(function() {
+            $.ajax({
+               type: 'POST',
+               data: { funcao: "NaoSeguir",
+                  Seguir: <?php echo $UserKey; ?> },
+               url: 'includes/seguir.php',
+               success: function(result){
+                     history.go(0);
+               }
+            });
+         });
+      });
+   </script>
 </body>
 
 <?php
+   $connection = null;
    }
 ?>

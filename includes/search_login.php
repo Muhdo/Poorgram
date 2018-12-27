@@ -20,8 +20,6 @@
 
       } elseif ($queryLogin->rowCount() == 1) { //Existe um resultado
          $row = $queryLogin->fetchAll(PDO::FETCH_ASSOC); //Ler o resultado
-
-         var_dump($row[0]["Password"]);
          $hashedPasswordCheck = password_verify($password, $row[0]["Password"]);
 
          if ($hashedPasswordCheck == FALSE) {
@@ -47,8 +45,6 @@
          //Fechar conexões
          $queryLogin->closeCursor();
          $connection = null;
-
-         echo "Erro meu filho";
       }
    }
 ?>

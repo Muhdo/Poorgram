@@ -8,7 +8,6 @@
 }
 
 .post .div-account {
-   border-bottom: 1px solid #FEFEFE;
    padding-bottom: 5px;
    align-items: center;
    justify-content: left;
@@ -46,11 +45,11 @@
    margin-bottom: 10px;
    color: #BEBEBE;
    font-size: 12px;
+   text-align: left;
 }
 
 .post .div-buttons {
    width: 100%;
-   border-bottom: 1px solid #FEFEFE;
    align-items: center;
    justify-content: left;
    display: flex;
@@ -181,6 +180,7 @@
    margin-right: 10px;
    color: #FEFEFE;
    text-decoration: none;
+   text-align: left;
 }
 
 .hidden {

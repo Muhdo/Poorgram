@@ -17,7 +17,7 @@
                   </form>
                </li>
                <li class="nav-list-item">
-                  <a href="#">
+                  <a href="perfil.php?<?php echo $_SESSION["User_Nickname"]; ?>">
                      <img class="nav-icon" src="img/profile.png">
                   </a>
                </li>

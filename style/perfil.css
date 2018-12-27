@@ -154,6 +154,14 @@ a {
    cursor: pointer;
 }
 
+.gallery-item-hidden {
+   position: relative;
+   flex: 1 0 22rem;
+   margin: 1rem;
+   color: #fff;
+   cursor: default;
+}
+
 .gallery-image {
    width: 100%;
    height: 40%;
