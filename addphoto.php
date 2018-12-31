@@ -40,63 +40,88 @@
                <button type="button" id="btn-zoomOut"><img class="img-button" src="img/zoom-out.png"></button>
                <button type="button" id="btn-reset"><img class="img-button" src="img/reset.png"></button>
             </div>
+            <div class="div-buttons">
+               <button class="btn-send" type="button" id="btn-submit">Enviar</button>
+            </div>
          </div>
       </div>
    </main>
    <script>
-      function initCropper(){
-         var image = document.getElementById("img-preview");
-         blobURL = URL.createObjectURL(image);
-         $image.one('built.cropper', function () {
-            URL.revokeObjectURL(blobURL);
-         }).cropper('replace', blobURL);
-
-         var cropper = new Cropper(image, {
-            ready() {
-               this.cropper.setAspectRatio(1 / 1),
-               this.cropper.setDragMode("move")
-            },
-            crop: function(e) {
-
-            }
-         });
-
-         $("#btn-move").click(function() {
-            $("#btn-crop").removeClass("btn-selected");
-            $("#btn-move").addClass("btn-selected");
-            cropper.setDragMode("move")
-         })
-
-         $("#btn-crop").click(function() {
-            $("#btn-move").removeClass("btn-selected");
-            $("#btn-crop").addClass("btn-selected");
-            cropper.setDragMode("crop")
-         })
-
-         $("#btn-rotLft").click(function() {
-            cropper.setDragMode("crop")
-         })
-      }
-
-      $("#imagem").on("change", function() {
-         if (this.files && this.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-               $('#img-preview').attr("src", e.target.result);
-               $(".div-preview").removeClass("hidden");
-               image = $("#img-preview");
-            }
-            reader.readAsDataURL(this.files[0]);
-            setTimeout(initCropper, 100);
-         }
-
+   $(function() {
+      var image = $("#img-preview");
+      $("input:file").change(function() {
          if (this.files[0].size > 1677215) {
             $("#aviso").removeClass("hidden");
          } else {
             $("#aviso").addClass("hidden");
          }
-     });
+
+         $(".div-preview").removeClass("hidden");
+
+         var oFReader = new FileReader();
+
+         oFReader.readAsDataURL(this.files[0]);
+         oFReader.onload = function (oFREvent) {
+            image.cropper("destroy");
+            image.attr("src", this.result);
+            image.cropper({
+               aspectRatio: 1 / 1,
+               viewMode: 1,
+               toggleDragModeOnDblclick: false,
+               dragMode: "move",
+               crop: function(e) {}
+            });
+         };
+      });
+
+      $("#btn-move").click(function() {
+         $("#btn-crop").removeClass("btn-selected");
+         $("#btn-move").addClass("btn-selected");
+         $("#img-preview").cropper("setDragMode", "move");
+      })
+
+      $("#btn-crop").click(function() {
+         $("#btn-move").removeClass("btn-selected");
+         $("#btn-crop").addClass("btn-selected");
+         $("#img-preview").cropper("setDragMode", "crop");
+      })
+
+      $("#btn-rotLft").click(function() {
+         $("#img-preview").cropper("rotate", -5);
+      })
+
+      $("#btn-rotRht").click(function() {
+         $("#img-preview").cropper("rotate", 5);
+      })
+
+      $("#btn-zoomIn").click(function() {
+         $("#img-preview").cropper("zoom", 0.1);
+      })
+
+      $("#btn-zoomOut").click(function() {
+         $("#img-preview").cropper("zoom", -0.1);
+      })
+
+      $("#btn-reset").click(function() {
+         $("#img-preview").cropper("reset");
+      })
+   });
+
+   $("#btn-submit").click(function() {
+      var imagem = $("#img-preview").cropper("getCroppedCanvas", {width: 960}).toDataURL("image/jpeg", 0.9);
+      var timestamp = Date.now();
+      $.ajax({
+         type: "POST",
+         url: "includes/addpost.php",
+         data: {
+            imageData: imagem,
+            filename: timestamp + ".jpeg",
+         },
+         success: function(output) {
+            console.log(output);
+         }
+      });
+   })
    </script>
 </body>
 

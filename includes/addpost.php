@@ -1,14 +1,13 @@
 <?php
-   $imagePath = $_POST["imagem"];
+   session_start();
+   include("connectDB.php");
 
-   $imagick = new \Imagick($imagePath);
-   $d = $imagick->getImageGeometry();
-   $width = $d['width'];
-   $height = $d['height'];
-   $startX = $d['width'] / 2;
-   $startY = $d['height'] / 2;
+   $Imagem = file_get_contents($_POST["imageData"]);
 
-   $imagick->cropImage($width, $height, $startX, $startY);
-   header("Content-Type: image/jpg");
-   echo $imagick->getImageBlob();
+   $queryAddPost = $connection->prepare("INSERT INTO publicacao(Publicacao, Key_Utilizador) VALUES (:Publicacao, :Utilizador)");
+   $queryAddPost->bindParam(":Publicacao", $Imagem, PDO::PARAM_STR);
+   $queryAddPost->bindParam(":Utilizador", $_SESSION["User_Id"], PDO::PARAM_STR);
+   $queryAddPost->execute();
+
+   $queryAddPost->closeCursor();
 ?>

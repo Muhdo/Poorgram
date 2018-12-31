@@ -123,7 +123,7 @@
       <div class="div-posts">
          <div class="gallery">
             <?php
-               $queryLoadPosts = $connection->prepare("SELECT Key_Publicacao, Publicacao FROM publicacao WHERE Key_Utilizador = :Key");
+               $queryLoadPosts = $connection->prepare("SELECT Key_Publicacao, Publicacao FROM publicacao WHERE Key_Utilizador = :Key ORDER BY Key_Publicacao DESC");
                $queryLoadPosts->bindParam(":Key", $UserKey, PDO::PARAM_STR);
                $queryLoadPosts->execute();
 
