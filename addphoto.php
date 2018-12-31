@@ -114,11 +114,10 @@
          type: "POST",
          url: "includes/addpost.php",
          data: {
-            imageData: imagem,
-            filename: timestamp + ".jpeg",
+            imageData: imagem
          },
          success: function(output) {
-            console.log(output);
+            
          }
       });
    })

@@ -1,5 +1,6 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/reglog.css">
+   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 
 <body>
@@ -36,5 +37,21 @@
       function mudarFace() {
          document.getElementById("facebook").innerHTML = "Esquece, não funfa!"
       }
+
+      $(".div-form").submit(function(e) {
+         e.preventDefault();
+
+         $.ajax({
+            type: "POST",
+            url: "includes/search_login.php",
+            data: {
+               email: e.email.value,
+               password: e.password.value,
+            },
+            success: function(output) {
+               console.log(output);
+            }
+         });
+      })
    </script>
 </body>
