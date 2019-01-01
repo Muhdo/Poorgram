@@ -16,14 +16,14 @@
       </div>
       <div class="div-direita">
          <div class="div-conteudo">
-            <form class="div-form" name="form-login" method="POST" action="includes/search_login.php">
+            <form class="div-form" name="login" method="POST" action="includes/search_login.php">
                <button class="button-facebook" id="facebook" type="button" onClick="mudarFace()">Login com Facebook</button>
                <div class="tooltip">
                   <input class="form-input" id="email" type="text" name="email" placeholder="Email Ex: JossefinoAndrade420@gamaile.come">
                   <span class="tooltiptext">Email da conta</span>
                </div>
                <div class="tooltip">
-               <input class="form-input" id="password" type="password" name="password" placeholder="Palavra-Passe Ex: &#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                  <input class="form-input" id="password" type="password" name="password" placeholder="Palavra-Passe Ex: &#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                   <span class="tooltiptext">Password da conta</span>
                </div>
                <button class="form-button" id="submit" type="submit" name="submit">Login</button>
@@ -45,11 +45,16 @@
             type: "POST",
             url: "includes/search_login.php",
             data: {
-               email: e.email.value,
-               password: e.password.value,
+               email: login.email.value,
+               password: login.password.value,
             },
             success: function(output) {
                console.log(output);
+               if (output == "Error") {
+
+               } else if (output == "Login") {
+                  location.href = "index.php";
+               }
             }
          });
       })

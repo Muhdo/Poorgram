@@ -176,6 +176,16 @@ table tr td h3 {
    background-color: #EEEEEE;
 }
 
+.form-input-erro {
+	box-shadow: inset 2px 2px #FF0000, inset -2px -2px #FF0000, inset 2px -2px #FF0000, inset -2px 2px #FF0000;
+	border-radius: 0.2em;
+}
+
+.form-input-correto {
+	box-shadow: inset 2px 2px #00AA00, inset -2px -2px #00AA00, inset 2px -2px #00AA00, inset -2px 2px #00AA00;
+	border-radius: 0.2em;
+}
+
 .form-button {
    box-sizing: content-box;
    max-width: 300px;
@@ -233,4 +243,13 @@ table tr td h3 {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+.div-erros {
+	text-align: center;
+	color: #EEEEEE;
+}
+
+.hidden {
+	display: none;
 }

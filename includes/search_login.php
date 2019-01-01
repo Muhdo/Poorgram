@@ -18,14 +18,22 @@
          $queryLogin->closeCursor();
          $connection = null;
 
+         echo "Error";
+         exit();
+
       } elseif ($queryLogin->rowCount() == 1) { //Existe um resultado
          $row = $queryLogin->fetchAll(PDO::FETCH_ASSOC); //Ler o resultado
          $hashedPasswordCheck = password_verify($password, $row[0]["Password"]);
 
          if ($hashedPasswordCheck == FALSE) {
+            echo "Error";
             exit();
          } elseif ($hashedPasswordCheck == TRUE) {
             //Iniciar sessão
+            try {
+               session_unset();
+               session_destroy();
+            } catch (\Exception $e) {}
             session_start();
             $_SESSION["User_Id"] = $row[0]["Key_Utilizador"];
             $_SESSION["User_Nickname"] = $row[0]["NomeUnico"];
@@ -39,12 +47,16 @@
             $queryLogin->closeCursor();
             $connection = null;
 
-            header("Location: ../index.php");
+            echo "Login";
+            exit();
          }
       } else { //Qualquer outro tipo de resultado não esperado
          //Fechar conexões
          $queryLogin->closeCursor();
          $connection = null;
+
+         echo "Error";
+         exit();
       }
    }
 ?>

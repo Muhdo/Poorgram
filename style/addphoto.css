@@ -92,7 +92,16 @@ input[type="submit"] {
 }
 
 .div-buttons {
-   margin-top: 5px;
+   display:flex;
+   flex-direction: row;
+   width: 100%;
+   justify-content: space-around;
+}
+
+.div-buttons-group {
+   display:flex;
+   flex-direction: row;
+   margin: 5px;
 }
 
 button {
@@ -121,6 +130,7 @@ button:hover {
    white-space: nowrap;
    vertical-align: middle;
    border: 1px solid transparent;
+   margin-top: 10px;
    padding: 0.375rem 0.75rem;
    font-size: 1rem;
    line-height: 1.5;

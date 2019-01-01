@@ -24,7 +24,6 @@
       <h3>Todos os teus seguidores vão poder vê-la! (se é que alguem te segue...)</h3>
 
       <div class="div-form">
-         <p class="div-aviso hidden hidden" id="aviso">A imagem é maior que 16.8 MB, a qualidade da imagem pode ficar má devido á compressão!</p>
          <form class="form-addphoto" action="includes/addpost.php" method="post">
             <label for="imagem" class="form-filebutton">Carregar Imagem</label>
             <input type="file" id="imagem" name="imagem" accept="image/png, image/jpeg, image/JPEG, image/jpeg2000, image/jpg, image/gif">
@@ -32,13 +31,21 @@
          <div class="div-preview hidden">
             <img class="img-preview" id="img-preview">
             <div class="div-buttons">
-               <button class="btn-selected" type="button" id="btn-move"><img class="img-button" src="img/arrows.png"></button>
-               <button type="button" id="btn-crop"><img class="img-button" src="img/crop.png"></button>
-               <button type="button" id="btn-rotLft"><img class="img-button" src="img/rotate-left.png"></button>
-               <button type="button" id="btn-rotRht"><img class="img-button" src="img/rotate-right.png"></button>
-               <button type="button" id="btn-zoomIn"><img class="img-button" src="img/zoom-in.png"></button>
-               <button type="button" id="btn-zoomOut"><img class="img-button" src="img/zoom-out.png"></button>
-               <button type="button" id="btn-reset"><img class="img-button" src="img/reset.png"></button>
+               <div class="div-buttons-group">
+                  <button class="btn-selected" type="button" id="btn-move"><img class="img-button" src="img/arrows.png"></button>
+                  <button type="button" id="btn-crop"><img class="img-button" src="img/crop.png"></button>
+               </div>
+               <div class="div-buttons-group">
+                  <button type="button" id="btn-rotLft"><img class="img-button" src="img/rotate-left.png"></button>
+                  <button type="button" id="btn-rotRht"><img class="img-button" src="img/rotate-right.png"></button>
+               </div>
+               <div class="div-buttons-group">
+                  <button type="button" id="btn-zoomIn"><img class="img-button" src="img/zoom-in.png"></button>
+                  <button type="button" id="btn-zoomOut"><img class="img-button" src="img/zoom-out.png"></button>
+               </div>
+               <div class="div-buttons-group">
+                  <button type="button" id="btn-reset"><img class="img-button" src="img/reset.png"></button>
+               </div>
             </div>
             <div class="div-buttons">
                <button class="btn-send" type="button" id="btn-submit">Enviar</button>
@@ -50,12 +57,6 @@
    $(function() {
       var image = $("#img-preview");
       $("input:file").change(function() {
-         if (this.files[0].size > 1677215) {
-            $("#aviso").removeClass("hidden");
-         } else {
-            $("#aviso").addClass("hidden");
-         }
-
          $(".div-preview").removeClass("hidden");
 
          var oFReader = new FileReader();
@@ -117,7 +118,11 @@
             imageData: imagem
          },
          success: function(output) {
-            
+            if (output == "Add") {
+               location.href = "perfil.php";
+            } else if (output == "Error") {
+               location.href = "index.php";
+            }
          }
       });
    })
