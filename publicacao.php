@@ -24,7 +24,7 @@
 
             $url = parse_url($_SERVER["REQUEST_URI"]);
 
-            $queryLoadPost = $connection->prepare("SELECT Publicacao, Data, NomeUnico, FotoPerfil FROM publicacao INNER JOIN utilizador ON publicacao.Key_Utilizador = utilizador.Key_Utilizador WHERE Key_Publicacao = :Key");
+            $queryLoadPost = $connection->prepare("SELECT publicacao.Key_Utilizador, Publicacao, Data, NomeUnico, FotoPerfil FROM publicacao INNER JOIN utilizador ON publicacao.Key_Utilizador = utilizador.Key_Utilizador WHERE Key_Publicacao = :Key");
             $queryLoadPost->bindParam(":Key", $url["query"], PDO::PARAM_STR);
             $queryLoadPost->execute();
 
@@ -35,7 +35,7 @@
             } else {
                $resultado = $queryLoadPost->fetchAll();
 
-
+               $IdUtilizador = $resultado[0]["Key_Utilizador"];
                $Utilizador = $resultado[0]["NomeUnico"];
 
                if (is_null($resultado[0]["FotoPerfil"])) {
@@ -82,6 +82,14 @@
                <img class="comment-button"src="img/comment.png" onclick="Comentar()">
                <p class="comment-quant" id="QuantComments"><?php echo $QuantComments; ?></p>
             </div>
+            <?php
+               if ($IdUtilizador == $_SESSION["User_Id"]) {
+                  echo '<div class="div-buttons-group-right">
+                     <img class="delete-button" src="img/delete.png" id="deletePost" onclick="DeletePost('.$url["query"].')">
+                     <p class="delete-text hidden">Eliminar publicação?</p>
+                  </div>';
+               }
+            ?>
          </div>
          <div class="div-place-comment hidden" id="div-comment">
             <form class="form-comment" name="comentar" action="" method="post">
@@ -120,9 +128,9 @@
 
          function DeleteComment(CommentId) {
             $.ajax({
-               type: 'POST',
+               type: "POST",
                data: { chave: CommentId },
-               url: 'includes/deleteComment.php',
+               url: "includes/deleteComment.php",
                success: function(result){
                   location.reload();
                }
@@ -134,9 +142,9 @@
 
             $("#like").click(function() {
                $.ajax({
-                  type: 'POST',
+                  type: "POST",
                   data: { Publicacao: <?php echo $url["query"];?> },
-                  url: 'includes/like.php',
+                  url: "includes/like.php",
                   success: function(result){
                      if (result == "Add") {
                         QuantLikes += 1;
@@ -155,11 +163,11 @@
             $("#submit").click(function() {
                event.preventDefault();
                $.ajax({
-                  type: 'POST',
+                  type: "POST",
                   data: { Publicacao: <?php echo $url["query"];?>,
                      Comentario: comentar.comentario.value
                   },
-                  url: 'includes/comentar.php',
+                  url: "includes/comentar.php",
                   success: function(result){
                      if (result == "Add") {
                         QuantLikes += 1;
@@ -169,6 +177,46 @@
                });
             });
          });
+
+         var ultimoClick = 0;
+         var ultimoPost;
+         var Timer;
+         var Intervalo = 3000;
+
+         function DeletePost(PublicacaoId) {
+            clearTimeout(Timer);
+
+            var d = new Date();
+            var tempo = d.getTime();
+
+            $("#deletePost").attr("src", "img/delete-red.png");
+            $(".delete-text").removeClass("hidden");
+
+            if((tempo - ultimoClick <= 3000 && tempo - ultimoClick >= 150) && ultimoPost == PublicacaoId) {
+               $.ajax({
+                  type: "POST",
+                  data: { chave: PublicacaoId },
+                  url: "includes/deletePost.php",
+                  success: function(result){
+
+                     if (result == "Error") {
+                        location.reload();
+                     } else if (result == "Del") {
+                        location.href = "perfil.php";
+                     }
+                  }
+               });
+            }
+            ultimoClick = tempo;
+            ultimoPost = PublicacaoId;
+
+            Timer = setTimeout(function() {
+               $("#deletePost").attr("src", "img/delete.png");
+               $(".delete-text").addClass("hidden");
+               ultimoClick = 0;
+               ultimoPost = undefined;
+            }, Intervalo);
+         }
       </script>
    </main>
 </body>

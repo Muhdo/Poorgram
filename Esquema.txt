@@ -46,19 +46,11 @@
       Descricao
          VARCHAR(255)
 
-   Seguidor
+   Seguir
       *!Key_Utilizador
          BIGINT
          1(Utilizador.Key_Utilizador)
-      *!Key_Seguidor
-         BIGINT
-         2(Utilizador.Key_Utilizador)
-
-   Seguindo
-      *!Key_Utilizador
-         BIGINT
-         1(Utilizador.Key_Utilizador)
-      *!Key_Seguindo
+      *!Key_Seguir
          BIGINT
          2(Utilizador.Key_Utilizador)
 
@@ -70,6 +62,8 @@
       !Key_Utilizador
          BIGINT
          1(Utilizador.Key_Utilizador)
+      Data
+         TIMESTAMP
 
    Gosto
       *!Key_Publicacao
@@ -90,3 +84,11 @@
          2(Utilizador.Key_Utilizador)
       Comentario
          VARCHAR(255)
+
+
+XAMPP Config
+   php.ini
+      378: max_execution_time=180
+      399: memory_limit=128M
+      665: post_max_size=256M
+      818: upload_max_filesize=128M
