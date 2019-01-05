@@ -1,6 +1,7 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/main.css">
    <link rel="stylesheet" href="style/post.css">
+   <link rel="icon" href="img/favicon.png">
    <script src="node_modules\jquery\dist\jquery.js"></script>
 </head>
 

@@ -1,6 +1,7 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/main.css">
    <link rel="stylesheet" type="text/css" href="style/addphoto.css">
+   <link rel="icon" href="img/favicon.png">
    <script src="node_modules\jquery\dist\jquery.js"></script>
    <script src="node_modules\cropperjs\dist\cropper.js"></script>
    <link href="node_modules\cropperjs\dist\cropper.css" rel="stylesheet">

@@ -1,5 +1,6 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/main.css">
+   <link rel="icon" href="img/favicon.png">
 </head>
 
 <?php

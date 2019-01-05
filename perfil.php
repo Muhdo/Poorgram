@@ -1,6 +1,7 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/main.css">
    <link rel="stylesheet" type="text/css" href="style/perfil.css">
+   <link rel="icon" href="img/favicon.png">
    <script src="node_modules\jquery\dist\jquery.js"></script>
 </head>
 
@@ -19,8 +20,14 @@
 
    $url=parse_url($_SERVER["REQUEST_URI"]);
 
+   if (empty($url["query"])) {
+      $perfil = $_SESSION["User_Nickname"];
+   } else {
+      $perfil = $url["query"];
+   }
+
    $queryLoadUser = $connection->prepare("SELECT * FROM utilizador WHERE NomeUnico = :Nickname");
-   $queryLoadUser->bindParam(":Nickname", $url["query"], PDO::PARAM_STR);
+   $queryLoadUser->bindParam(":Nickname", $perfil, PDO::PARAM_STR);
    $queryLoadUser->execute();
 
    if ($queryLoadUser->rowCount() == 0) {

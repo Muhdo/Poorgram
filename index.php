@@ -4,6 +4,7 @@
       <meta charset="utf-8">
       <title> Poorgram </title>
       <link rel="stylesheet" type="text/css" href="style/style.css">
+      <link rel="icon" href="img/favicon.png">
    </head>
    <body>
       <?php

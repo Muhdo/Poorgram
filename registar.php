@@ -1,5 +1,6 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/reglog.css">
+   <link rel="icon" href="img/favicon.png">
    <script src="node_modules\jquery\dist\jquery.js"></script>
 </head>
 
@@ -18,9 +19,9 @@
          <div class="div-conteudo">
             <h1>A rede social do momento!🔥</h1>
             <img src="img/logo.png">
-            <h3>Não podes perder ⏰para esta forma fantástica de entenderes que não tens amigos!</h3>
+            <h3>Não podes perder ⏰ para esta forma fantástica de entenderes que não tens amigos!</h3>
             <h3>Acredita, eles apenas querem os teus 👍🏻</h3>
-            <h3>Cria já a tua conta para ficares 😭ao entender que ninguem dá 👍🏻nas tuas 📷</h3>
+            <h3>Cria já a tua conta para ficares 😭 ao entender que ninguem dá 👍🏻 nas tuas 📷</h3>
          </div>
       </div>
 
