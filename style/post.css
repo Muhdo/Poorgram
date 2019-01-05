@@ -183,6 +183,13 @@
    text-align: left;
 }
 
+.img-delete {
+   justify-content: flex-end;
+   margin: auto;
+   margin-right: 10px;
+   height: 20px;
+}
+
 .hidden {
    display: none;
 }

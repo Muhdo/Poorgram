@@ -1,7 +1,6 @@
 <head>
    <link rel="stylesheet" href="style/post.css">
-   <link rel="icon" href="img/favicon.png">
-   <script src="node_modules\jquery\dist\jquery.js"></script>
+   <script src="node_modules/jquery/dist/jquery.js"></script>
 </head>
 <?php
    $IdPub = $GLOBALS["Query_PublicacaoId"];
@@ -25,8 +24,8 @@
       </div>
    </div>
    <div class="div-place-comment hidden" id="div-comment<?php echo $IdPub; ?>">
-      <form class="form-comment" name="comentar" action="" method="post">
-         <textarea class="form-comment" name="comentario<?php echo $IdPub; ?>" maxlength="255" rows="5" placeholder="Comentário"></textarea>
+      <form class="form-comment" name="comentar">
+         <textarea class="form-comment" name="comentario" id="comentario<?php echo $IdPub; ?>" maxlength="255" rows="5" placeholder="Comentário"></textarea>
          <button class="form-button" id="submit" type="submit" name="<?php echo $IdPub; ?>" onclick="EnviarComment($(this).attr('name'))">Enviar</button>
       </form>
    </div>
@@ -34,68 +33,24 @@
    <?php
       include("includes/connectDB.php");
 
-      $queryComentarios = $connection->prepare("SELECT Comentario, NomeUnico FROM comentario INNER JOIN utilizador ON comentario.Key_Utilizador = utilizador.Key_Utilizador WHERE Key_Publicacao = :Key ORDER BY Key_Comentario LIMIT 10");
+      $queryComentarios = $connection->prepare("SELECT Key_comentario, Comentario, comentario.Key_Utilizador, NomeUnico FROM comentario INNER JOIN utilizador ON comentario.Key_Utilizador = utilizador.Key_Utilizador WHERE Key_Publicacao = :Key ORDER BY Key_Comentario DESC LIMIT 10");
       $queryComentarios->bindParam(":Key", $GLOBALS["Query_PublicacaoId"], PDO::PARAM_STR);
       $queryComentarios->execute();
 
       foreach ($queryComentarios->fetchAll() as $resultado) {
-         echo '<div class="div-comment">
-            <a class="a-comment-account" href="perfil.php?'.$resultado["NomeUnico"].'">'.$resultado["NomeUnico"].'</a>
-            <p class="comment">'.$resultado["Comentario"].'</p>
-         </div>';
+         if ($resultado["Key_Utilizador"] == $_SESSION["User_Id"]) {
+            echo '<div class="div-comment">
+               <a class="a-comment-account" href="perfil.php?'.$resultado["NomeUnico"].'">'.$resultado["NomeUnico"].'</a>
+               <p class="comment">'.$resultado["Comentario"].'</p>
+               <img class="img-delete" src="img/delete.png" onclick="DeleteComment('.$resultado["Key_comentario"].')">
+            </div>';
+         } else {
+            echo '<div class="div-comment">
+               <a class="a-comment-account" href="perfil.php?'.$resultado["NomeUnico"].'">'.$resultado["NomeUnico"].'</a>
+               <p class="comment">'.$resultado["Comentario"].'</p>
+            </div>';
+         }
       }
       $queryCountComments->closeCursor();
    ?>
 </article>
-<script>
-   function Comentar(PubId) {
-      $("#div-comment" + PubId).toggleClass("hidden");
-   }
-
-   function Like(PubId) {
-      var QuantLikes = parseInt($("#QuantLikes" + PubId).text());
-
-      $.ajax({
-         type: "POST",
-         data: { Publicacao: PubId },
-         url: "includes/like.php",
-         success: function(result){
-            if (result == "Add") {
-               QuantLikes += 1;
-               $("#QuantLikes" + PubId).text(QuantLikes);
-            }
-            if (result == "Del") {
-               QuantLikes -= 1;
-               $("#QuantLikes" + PubId).text(QuantLikes);
-            }
-         }
-      });
-   }
-
-   function EnviarComment(PubId) {
-      var QuantComments = parseInt($("#QuantComments" + PubId).text());
-      var message = $("#comentario" + PubId).val();
-      $("#submit").click(function() {
-         event.preventDefault();
-         $.ajax({
-            type: "POST",
-            data: {
-               Publicacao: PubId,
-               Comentario: message
-            },
-            url: "includes/comentar.php",
-            success: function(result){
-               console.log(result);
-               if (result == "Add") {
-                  location.reload();
-                  QuantLikes += 1;
-                  $("#QuantComments" + PubId).text(QuantLikes);
-               }
-               else {
-                  console.log(result);
-               }
-            }
-         });
-      });
-   }
-</script>

@@ -13,6 +13,7 @@
 
    if ($queryPesquisar->rowCount() == 0) {
       echo "<h2>A pesquisa de \"".$pesquisa."\" não foi dar a nenhum lado 😞</h2>\n<h4>Experimenta mudar a tua pesquisa! 😄</h4>";
+      exit();
    } else {
       foreach ($queryPesquisar->fetchAll() as $resultado) {
          if (is_null($resultado["FotoPerfil"])) {
@@ -32,6 +33,7 @@
             </div>
          </article>';
       }
+      exit();
    }
    exit();
 ?>

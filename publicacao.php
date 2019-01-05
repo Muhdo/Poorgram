@@ -2,7 +2,7 @@
    <link rel="stylesheet" type="text/css" href="style/main.css">
    <link rel="stylesheet" href="style/post.css">
    <link rel="icon" href="img/favicon.png">
-   <script src="node_modules\jquery\dist\jquery.js"></script>
+   <script src="node_modules/jquery/dist/jquery.js"></script>
 </head>
 
 <?php
@@ -91,15 +91,23 @@
          </div>
 
          <?php
-            $queryComentarios = $connection->prepare("SELECT Comentario, NomeUnico FROM comentario INNER JOIN utilizador ON comentario.Key_Utilizador = utilizador.Key_Utilizador WHERE Key_Publicacao = :Key ORDER BY Key_Comentario LIMIT 10");
+            $queryComentarios = $connection->prepare("SELECT Key_comentario, Comentario, comentario.Key_Utilizador, NomeUnico FROM comentario INNER JOIN utilizador ON comentario.Key_Utilizador = utilizador.Key_Utilizador WHERE Key_Publicacao = :Key ORDER BY Key_Comentario DESC");
             $queryComentarios->bindParam(":Key", $url["query"], PDO::PARAM_STR);
             $queryComentarios->execute();
 
             foreach ($queryComentarios->fetchAll() as $resultado) {
-               echo '<div class="div-comment">
-                  <a class="a-comment-account" href="perfil.php?'.$resultado["NomeUnico"].'">'.$resultado["NomeUnico"].'</a>
-                  <p class="comment">'.$resultado["Comentario"].'</p>
-               </div>';
+               if ($resultado["Key_Utilizador"] == $_SESSION["User_Id"]) {
+                  echo '<div class="div-comment">
+                     <a class="a-comment-account" href="perfil.php?'.$resultado["NomeUnico"].'">'.$resultado["NomeUnico"].'</a>
+                     <p class="comment">'.$resultado["Comentario"].'</p>
+                     <img class="img-delete" src="img/delete.png" onclick="DeleteComment('.$resultado["Key_comentario"].')">
+                  </div>';
+               } else {
+                  echo '<div class="div-comment">
+                     <a class="a-comment-account" href="perfil.php?'.$resultado["NomeUnico"].'">'.$resultado["NomeUnico"].'</a>
+                     <p class="comment">'.$resultado["Comentario"].'</p>
+                  </div>';
+               }
             }
             $queryCountComments->closeCursor();
          ?>
@@ -108,6 +116,17 @@
       <script>
          function Comentar() {
             document.getElementById("div-comment").classList.toggle("hidden");
+         }
+
+         function DeleteComment(CommentId) {
+            $.ajax({
+               type: 'POST',
+               data: { chave: CommentId },
+               url: 'includes/deleteComment.php',
+               success: function(result){
+                  location.reload();
+               }
+            });
          }
 
          $(document).ready(function(){

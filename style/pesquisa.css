@@ -21,13 +21,18 @@ a {
 .utilizador .div-account .img-account {
    height: 50px;
    width: 50px;
+   min-height: 50px;
+   min-width: 50px;
+   max-height: 50px;
+   max-width: 50px;
    border-radius: 50%;
 }
 
 .utilizador .div-account .p-name {
-   width: 20%;
-   margin-left: 5px;
+   width: auto;
+   margin-left: 15px;
    margin-right: 10px;
+   white-space: nowrap;
    color: #BEBEBE;
    text-decoration: none;
    font-weight: bold;
@@ -35,7 +40,8 @@ a {
 }
 
 .utilizador .div-account .a-account {
-   width: 20%;
+   width: auto;
+   white-space: nowrap;
    color: #BEBEBE;
    text-decoration: none;
    transition: color 0.3s;

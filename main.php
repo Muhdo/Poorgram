@@ -72,6 +72,62 @@
             $queryLoadFeed->closeCursor();
          ?>
    </main>
+   <script>
+      function Comentar(PubId) {
+         $("#div-comment" + PubId).toggleClass("hidden");
+      }
+
+      function Like(PubId) {
+         var QuantLikes = parseInt($("#QuantLikes" + PubId).text());
+         $.ajax({
+            type: "POST",
+            data: { Publicacao: PubId },
+            url: "includes/like.php",
+            success: function(result){
+               if (result == "Add") {
+                  QuantLikes += 1;
+                  $("#QuantLikes" + PubId).text(QuantLikes);
+               }
+               if (result == "Del") {
+                  QuantLikes -= 1;
+                  $("#QuantLikes" + PubId).text(QuantLikes);
+               }
+            }
+         });
+      }
+
+      function EnviarComment(PubId) {
+         var QuantComments = parseInt($("#QuantComments" + PubId).text());
+         var message = $("#comentario" + PubId).val();
+
+         $.ajax({
+            type: "POST",
+            data: {
+               Publicacao: PubId,
+               Comentario: message
+            },
+            url: "includes/comentar.php",
+            success: function(result){
+               if (result == "Add") {
+                  location.reload();
+                  QuantLikes += 1;
+                  $("#QuantComments" + PubId).text(QuantLikes);
+               }
+            }
+         });
+      }
+
+      function DeleteComment(CommentId) {
+         $.ajax({
+            type: 'POST',
+            data: { chave: CommentId },
+            url: 'includes/deleteComment.php',
+            success: function(result){
+               location.reload();
+            }
+         });
+      }
+   </script>
 </body>
 
 <?php
