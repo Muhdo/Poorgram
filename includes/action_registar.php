@@ -57,19 +57,12 @@
                         $queryInserir->bindParam(":Email", $email, PDO::PARAM_STR);
                         $queryInserir->bindParam(":Password", $hashedPassword, PDO::PARAM_STR);
                         $queryInserir->execute();
-                        //Ficheiro que procura e inicia a sessão
-                        include("search_login.php");
-                        $resultado = ExecutarLogin($email, $hashedPassword); //Função que faz isso, envia email e palavra passe encriptada
                         //Fechar conexões
                         $queryInserir->closeCursor();
                         $connection = null;
-                        if ($resultado == "Error") {
-                           echo "ErrorRegistar";  //Voltar para a página anterior
-                           exit();
-                        } elseif ($resultado == "Login") {
-                           echo "Login";  //Vai para a página principal
-                           exit();
-                        }
+
+                        echo "Registar";
+                        exit();
                      }
                   }
                }

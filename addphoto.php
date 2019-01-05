@@ -1,7 +1,7 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/main.css">
    <link rel="stylesheet" type="text/css" href="style/addphoto.css">
-   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+   <script src="node_modules\jquery\dist\jquery.js"></script>
    <script src="node_modules\cropperjs\dist\cropper.js"></script>
    <link href="node_modules\cropperjs\dist\cropper.css" rel="stylesheet">
    <script src="node_modules\jquery-cropper\dist\jquery-cropper.js"></script>

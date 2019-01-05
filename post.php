@@ -1,8 +1,11 @@
 <head>
    <link rel="stylesheet" href="style/post.css">
-   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+   <script src="node_modules\jquery\dist\jquery.js"></script>
 </head>
-<article class="post" id="<?php echo $GLOBALS["Query_PublicacaoId"]; ?>">
+<?php
+   $IdPub = $GLOBALS["Query_PublicacaoId"];
+?>
+<article class="post" id="<?php echo $IdPub; ?>">
    <div class="div-account">
       <img class="img-account" src="<?php echo $GLOBALS["Query_FotoPerfil"]; ?>">
       <a class="a-account" href="perfil.php?<?php echo $GLOBALS["Query_Utilizador"]; ?>"><?php echo $GLOBALS["Query_Utilizador"]; ?></a>
@@ -12,7 +15,7 @@
    <p class="data"><?php echo $GLOBALS["Query_Data"]; ?></p>
    <div class="div-buttons">
       <div class="div-buttons-group">
-         <img class="like-button" src="img/like.png" id="like">
+         <img class="like-button" src="img/like.png" id="like" name="<?php echo $IdPub; ?>">
          <p class="like-quant" id="QuantLikes"><?php echo $GLOBALS["Query_QuantLikes"]; ?></p>
       </div>
       <div class="div-buttons-group">
@@ -44,15 +47,18 @@
    ?>
 </article>
 <script>
+   var PubId = <?php echo $IdPub; ?>;
+   var QuantLikes = parseInt($("#QuantLikes").text());
+   var QuantComments = parseInt($("#QuantComments").text());
+
    function Comentar() {
       document.getElementById("div-comment").classList.toggle("hidden");
    }
 
    $(document).ready(function(){
-      var PubId = $(".post").attr("id");
-      var QuantLikes = parseInt($("#QuantLikes").text());
-
       $("#like").click(function() {
+         var PubId = $(this).parents(2).find("article").attr("id");
+         console.log(PubId);
          $.ajax({
             type: 'POST',
             data: { Publicacao: PubId },
@@ -70,7 +76,6 @@
          });
       });
 
-      var QuantComments = parseInt($("#QuantComments").text());
       $("#submit").click(function() {
          event.preventDefault();
          $.ajax({

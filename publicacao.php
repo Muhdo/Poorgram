@@ -1,7 +1,7 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/main.css">
    <link rel="stylesheet" href="style/post.css">
-   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+   <script src="node_modules\jquery\dist\jquery.js"></script>
 </head>
 
 <?php

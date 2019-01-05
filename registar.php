@@ -1,6 +1,6 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/reglog.css">
-   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+   <script src="node_modules\jquery\dist\jquery.js"></script>
 </head>
 
 <body>
@@ -18,9 +18,9 @@
          <div class="div-conteudo">
             <h1>A rede social do momento!🔥</h1>
             <img src="img/logo.png">
-            <h3>Não podes perder ⏰ para esta forma fantástica de entenderes que não tens amigos!</h3>
+            <h3>Não podes perder ⏰para esta forma fantástica de entenderes que não tens amigos!</h3>
             <h3>Acredita, eles apenas querem os teus 👍🏻</h3>
-            <h3>Cria já a tua conta para ficares 😭 ao entender que ninguem dá 👍🏻 nas tuas 📷</h3>
+            <h3>Cria já a tua conta para ficares 😭ao entender que ninguem dá 👍🏻nas tuas 📷</h3>
          </div>
       </div>
 
@@ -479,10 +479,22 @@
                                                                StyleErro("password");
                                                             } else if (output == "ErrorRepPassword") {
                                                                StyleErro("repPassword");
-                                                            } else if (output == "ErrorRegistar") {
-                                                               location.href = "index.php";
-                                                            } else if (output == "Login") {
-                                                               location.href = "index.php";
+                                                            } else if (output == "Registar") {
+                                                               $.ajax({
+                                                                  type: "POST",
+                                                                  url: "includes/search_login.php",
+                                                                  data: {
+                                                                     email: registar.email.value,
+                                                                     password: registar.password.value
+                                                                  },
+                                                                  success: function(output) {
+                                                                     if (output == "Error") {
+
+                                                                     } else if (output == "Login") {
+                                                                        location.href = "index.php";
+                                                                     }
+                                                                  }
+                                                               });
                                                             }
                                                          }
                                                       });

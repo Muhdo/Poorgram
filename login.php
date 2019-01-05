@@ -1,17 +1,25 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/reglog.css">
-   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+   <script src="node_modules\jquery\dist\jquery.js"></script>
 </head>
 
 <body>
+   <?php
+      session_start();
+
+      if (isset($_SESSION["User_Id"])) {
+         header("Location: index.php");
+      }
+      elseif(!isset($_SESSION["User_Id"])) {
+    ?>
    <main>
       <div class="div-esquerda">
          <div class="div-conteudo">
             <h1>A rede social do momento!🔥</h1>
             <img src="img/logo.png">
-            <h3>Não podes perder ⏰ para esta forma fantástica de entenderes que não tens amigos!</h3>
+            <h3>Não podes perder ⏰para esta forma fantástica de entenderes que não tens amigos!</h3>
             <h3>Acredita, eles apenas querem os teus 👍🏻</h3>
-            <h3>Cria já a tua conta para ficares 😭 ao entender que ninguem dá 👍🏻 nas tuas 📷</h3>
+            <h3>Cria já a tua conta para ficares 😭ao entender que ninguem dá 👍🏻nas tuas 📷</h3>
          </div>
       </div>
       <div class="div-direita">
@@ -34,6 +42,16 @@
    </main>
 
    <script>
+      function StyleErro(input) {
+         document.getElementById(input).classList.remove("form-input-correto");
+         document.getElementById(input).classList.add("form-input-erro");
+      }
+
+      function StyleValid(input) {
+         document.getElementById(input).classList.remove("form-input-erro");
+         document.getElementById(input).classList.add("form-input-correto");
+      }
+
       function mudarFace() {
          document.getElementById("facebook").innerHTML = "Esquece, não funfa!"
       }
@@ -51,12 +69,18 @@
             success: function(output) {
                console.log(output);
                if (output == "Error") {
-
+                  StyleErro("email");
+                  StyleErro("password");
                } else if (output == "Login") {
+                  StyleValid("email");
+                  StyleValid("password");
                   location.href = "index.php";
                }
             }
          });
       })
    </script>
+<?php
+   }
+?>
 </body>
