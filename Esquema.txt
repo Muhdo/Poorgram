@@ -40,7 +40,7 @@
       Email
          VARCHAR(255)
       Password
-         VARCHAR(255)
+         VARCHAR(60)
       FotoPerfil
          MEDIUMBLOB
       Descricao

@@ -110,7 +110,7 @@
    });
 
    $("#btn-submit").click(function() {
-      var imagem = $("#img-preview").cropper("getCroppedCanvas", {width: 960}).toDataURL("image/jpeg", 0.9);
+      var imagem = $("#img-preview").cropper("getCroppedCanvas", {width: 900}).toDataURL("image/jpeg", 0.9);
       var timestamp = Date.now();
       $.ajax({
          type: "POST",

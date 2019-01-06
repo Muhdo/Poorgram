@@ -169,10 +169,7 @@
                   },
                   url: "includes/comentar.php",
                   success: function(result){
-                     if (result == "Add") {
-                        QuantLikes += 1;
-                        $('#QuantComments').text(QuantLikes);
-                     }
+                     location.reload();
                   }
                });
             });

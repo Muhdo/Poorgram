@@ -24,7 +24,7 @@
       </div>
    </div>
    <div class="div-place-comment hidden" id="div-comment<?php echo $IdPub; ?>">
-      <form class="form-comment" name="comentar">
+      <form class="form-comment" name="comentar" action="" method="post">
          <textarea class="form-comment" name="comentario" id="comentario<?php echo $IdPub; ?>" maxlength="255" rows="5" placeholder="Comentário"></textarea>
          <button class="form-button" id="submit" type="submit" name="<?php echo $IdPub; ?>" onclick="EnviarComment($(this).attr('name'))">Enviar</button>
       </form>

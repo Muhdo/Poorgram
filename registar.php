@@ -51,23 +51,23 @@
             <form class="div-form" name="registar" method="POST" action="includes/action_registar.php">
                <button class="button-facebook" id="facebook" type="button" onClick="MudarFace()">Login com Facebook</button>
                <div class="tooltip">
-                  <input class="form-input" id="nome" type="text" name="nome" value="<?php echo $nome; ?>" size="30" placeholder="Nome Ex: Jossefino Andrade" required>
+                  <input class="form-input" id="nome" type="text" name="nome" value="<?php echo $nome; ?>" maxlength="30" placeholder="Nome Ex: Jossefino Andrade" required>
                   <span class="tooltiptext">Nome Próprio<br>Até 30 caracteres.</span>
                </div>
                <div class="tooltip">
-                  <input class="form-input" id="identificador" type="text" name="nickname" value="<?php echo $nickname; ?>" size="20" placeholder="Nickname Ex: __xXJosefino420Xx__" required>
+                  <input class="form-input" id="identificador" type="text" name="nickname" value="<?php echo $nickname; ?>" maxlength="20" placeholder="Nickname Ex: __xXJosefino420Xx__" required>
                   <span class="tooltiptext">Nome de Utilizador que te identifiques.<br>Tem de ser unico.<br>Mais de 4 caracteres.<br>Até 20 caracteres.</span>
                </div>
                <div class="tooltip">
-                  <input class="form-input" id="email" type="email" name="email" value="<?php echo $email; ?>" size="255" placeholder="Email Ex: JossefinoAndrade420@gamaile.come" required>
+                  <input class="form-input" id="email" type="email" name="email" value="<?php echo $email; ?>" maxlength="255" placeholder="Email Ex: JossefinoAndrade420@gamaile.come" required>
                   <span class="tooltiptext">Email válido para login.<br>Tem de ser unico.</span>
                </div>
                <div class="tooltip">
-                  <input class="form-input" id="password" type="password" name="password" value="<?php echo $password; ?>" size="255" placeholder="Palavra-Passe Ex: &#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required>
+                  <input class="form-input" id="password" type="password" name="password" value="<?php echo $password; ?>" placeholder="Palavra-Passe Ex: &#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required>
                   <span class="tooltiptext">Mais de 8 caracteres.<br>Conter letras maiusculas.<br>Conter letras minusculas.<br>Conter numeros.<br>Conter caracteres especiais.</span>
                </div>
                <div class="tooltip">
-                  <input class="form-input" id="repPassword" type="password" name="repPassword" value="<?php echo $repPassword; ?>" size="255" placeholder="Repetir Palavra-Passe Ex: &#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required>
+                  <input class="form-input" id="repPassword" type="password" name="repPassword" value="<?php echo $repPassword; ?>" placeholder="Repetir Palavra-Passe Ex: &#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required>
                   <span class="tooltiptext">Tem de ser igual á palavra-passe.</span>
                </div>
                <button class="form-button" id="submit" type="submit" name="submit">Registar</button>
