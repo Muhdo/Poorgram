@@ -490,7 +490,7 @@
                                                                   },
                                                                   success: function(output) {
                                                                      if (output == "Error") {
-
+                                                                        location.href = "login.php";
                                                                      } else if (output == "Login") {
                                                                         location.href = "index.php";
                                                                      }

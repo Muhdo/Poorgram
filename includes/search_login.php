@@ -34,7 +34,6 @@
          $_SESSION["User_Nickname"] = $row[0]["NomeUnico"];
          $_SESSION["User_Nome"] = $row[0]["Nome"];
          $_SESSION["User_Email"] = $row[0]["Email"];
-         $_SESSION["User_Password"] = $row[0]["Password"];
          $_SESSION["User_FotoPerfil"] = $row[0]["FotoPerfil"];
          $_SESSION["User_Descricao"] = $row[0]["Descricao"];
 

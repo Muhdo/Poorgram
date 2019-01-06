@@ -11,13 +11,32 @@
       $queryProcurarNickname = $connection->prepare("SELECT * FROM utilizador WHERE NomeUnico = :Nickname");
       $queryProcurarNickname->bindParam(":Nickname", $nickname, PDO::PARAM_STR); //Associar a variavel com o campo na query
       $queryProcurarNickname->execute();
-      if ($queryProcurarNickname->rowCount() > 0) { //Verificar se existe algum resultado
-         $queryProcurarNickname->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
-         $connection = null;
+      if ($queryProcurarNickname->rowCount() == 1) { //Verificar se existe algum resultado
+         if (isset($_SESSION["User_Id"])) {
+            $resultado = $queryProcurarNickname->fetchAll();
 
-         echo "Duplication";  //Erro já existe este nome
-         exit();
-      } else {
+            if ($resultado["Key_Utilizador"] == $_SESSION["User_Id"]) {
+               $queryProcurarNickname->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
+               $connection = null;
+
+               echo "Valid";
+               exit();
+            } elseif ($resultado["Key_Utilizador"] != $_SESSION["User_Id"]) {
+               $queryProcurarNickname->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
+               $connection = null;
+
+               echo "Duplication"; //Erro já existe este nome
+               exit();
+            }
+         }
+         elseif(!isset($_SESSION["User_Id"])) {
+            $queryProcurarNickname->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
+            $connection = null;
+
+            echo "Duplication";  //Erro já existe este nome
+            exit();
+         }
+      } elseif ($queryProcurarNickname->rowCount() == 0) {
          $queryProcurarNickname->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
          $connection = null;
 

@@ -1,6 +1,6 @@
 <head>
    <link rel="stylesheet" type="text/css" href="style/main.css">
-   <link rel="stylesheet" type="text/css" href="style/addphoto.css">
+   <link rel="stylesheet" type="text/css" href="style/addPhoto.css">
    <link rel="icon" href="img/favicon.png">
    <script src="node_modules/jquery/dist/jquery.js"></script>
    <script src="node_modules/cropperjs/dist/cropper.js"></script>
@@ -55,78 +55,78 @@
       </div>
    </main>
    <script>
-   $(function() {
-      var image = $("#img-preview");
-      $("input:file").change(function() {
-         $(".div-preview").removeClass("hidden");
+      $(function() {
+         var image = $("#img-preview");
+         $("input:file").change(function() {
+            $(".div-preview").removeClass("hidden");
 
-         var oFReader = new FileReader();
+            var oFReader = new FileReader();
 
-         oFReader.readAsDataURL(this.files[0]);
-         oFReader.onload = function (oFREvent) {
-            image.cropper("destroy");
-            image.attr("src", this.result);
-            image.cropper({
-               aspectRatio: 1 / 1,
-               viewMode: 1,
-               toggleDragModeOnDblclick: false,
-               dragMode: "move",
-               crop: function(e) {}
-            });
-         };
+            oFReader.readAsDataURL(this.files[0]);
+            oFReader.onload = function (oFREvent) {
+               image.cropper("destroy");
+               image.attr("src", this.result);
+               image.cropper({
+                  aspectRatio: 1 / 1,
+                  viewMode: 1,
+                  toggleDragModeOnDblclick: false,
+                  dragMode: "move",
+                  crop: function(e) {}
+               });
+            };
+         });
+
+         $("#btn-move").click(function() {
+            $("#btn-crop").removeClass("btn-selected");
+            $("#btn-move").addClass("btn-selected");
+            $("#img-preview").cropper("setDragMode", "move");
+         })
+
+         $("#btn-crop").click(function() {
+            $("#btn-move").removeClass("btn-selected");
+            $("#btn-crop").addClass("btn-selected");
+            $("#img-preview").cropper("setDragMode", "crop");
+         })
+
+         $("#btn-rotLft").click(function() {
+            $("#img-preview").cropper("rotate", -5);
+         })
+
+         $("#btn-rotRht").click(function() {
+            $("#img-preview").cropper("rotate", 5);
+         })
+
+         $("#btn-zoomIn").click(function() {
+            $("#img-preview").cropper("zoom", 0.1);
+         })
+
+         $("#btn-zoomOut").click(function() {
+            $("#img-preview").cropper("zoom", -0.1);
+         })
+
+         $("#btn-reset").click(function() {
+            $("#img-preview").cropper("reset");
+         })
       });
 
-      $("#btn-move").click(function() {
-         $("#btn-crop").removeClass("btn-selected");
-         $("#btn-move").addClass("btn-selected");
-         $("#img-preview").cropper("setDragMode", "move");
-      })
-
-      $("#btn-crop").click(function() {
-         $("#btn-move").removeClass("btn-selected");
-         $("#btn-crop").addClass("btn-selected");
-         $("#img-preview").cropper("setDragMode", "crop");
-      })
-
-      $("#btn-rotLft").click(function() {
-         $("#img-preview").cropper("rotate", -5);
-      })
-
-      $("#btn-rotRht").click(function() {
-         $("#img-preview").cropper("rotate", 5);
-      })
-
-      $("#btn-zoomIn").click(function() {
-         $("#img-preview").cropper("zoom", 0.1);
-      })
-
-      $("#btn-zoomOut").click(function() {
-         $("#img-preview").cropper("zoom", -0.1);
-      })
-
-      $("#btn-reset").click(function() {
-         $("#img-preview").cropper("reset");
-      })
-   });
-
-   $("#btn-submit").click(function() {
-      var imagem = $("#img-preview").cropper("getCroppedCanvas", {width: 900}).toDataURL("image/jpeg", 0.9);
-      var timestamp = Date.now();
-      $.ajax({
-         type: "POST",
-         url: "includes/addpost.php",
-         data: {
-            imageData: imagem
-         },
-         success: function(output) {
-            if (output == "Add") {
-               location.href = "perfil.php";
-            } else if (output == "Error") {
-               location.href = "index.php";
+      $("#btn-submit").click(function() {
+         var imagem = $("#img-preview").cropper("getCroppedCanvas", {width: 900}).toDataURL("image/jpeg", 0.9);
+         var timestamp = Date.now();
+         $.ajax({
+            type: "POST",
+            url: "includes/addpost.php",
+            data: {
+               imageData: imagem
+            },
+            success: function(output) {
+               if (output == "Add") {
+                  location.href = "perfil.php";
+               } else if (output == "Error") {
+                  location.href = "index.php";
+               }
             }
-         }
-      });
-   })
+         });
+      })
    </script>
 </body>
 

@@ -108,8 +108,8 @@
             <div class="div-buttons">
                <?php
                   if ($UserKey == $_SESSION["User_Id"]) {
-                     echo '<a class="a-button" href="editar.php">Editar Perfil</a>';
-                     echo '<a class="a-button" href="addphoto.php">Adicionar Foto</a>';
+                     echo '<a class="a-button" href="editProfile.php">Editar Perfil</a>';
+                     echo '<a class="a-button" href="addPhoto.php">Adicionar Foto</a>';
                   } else {
                      $querySaberSegue = $connection->prepare("SELECT * FROM seguir WHERE Key_Utilizador = :Key AND Key_Seguir = :Seguir");
                      $querySaberSegue->bindParam(":Key", $_SESSION["User_Id"], PDO::PARAM_STR);

@@ -11,13 +11,32 @@
       $queryProcurarEmail = $connection->prepare("SELECT * FROM utilizador WHERE Email = :Email");
       $queryProcurarEmail->bindParam(":Email", $email, PDO::PARAM_STR); //Associar a variavel com o campo da query
       $queryProcurarEmail->execute();
-      if ($queryProcurarEmail->rowCount() > 0) { //Verificar se existe algum resultado
-         $queryProcurarEmail->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
-         $connection = null;
+      if ($queryProcurarEmail->rowCount() == 1) { //Verificar se existe algum resultado
+         if (isset($_SESSION["User_Id"])) {
+            $resultado = $queryProcurarEmail->fetchAll();
 
-         echo "Duplication";  //Voltar para a página anterior
-         exit();
-      } else {
+            if ($resultado["Key_Utilizador"] == $_SESSION["User_Id"]) {
+               $queryProcurarEmail->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
+               $connection = null;
+
+               echo "Valid";
+               exit();
+            } elseif ($resultado["Key_Utilizador"] != $_SESSION["User_Id"]) {
+               $queryProcurarEmail->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
+               $connection = null;
+
+               echo "Duplication"; //Erro já existe este email
+               exit();
+            }
+         }
+         elseif(!isset($_SESSION["User_Id"])) {
+            $queryProcurarEmail->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
+            $connection = null;
+
+            echo "Duplication";  //Erro já existe este email
+            exit();
+         }
+      } elseif ($queryProcurarEmail->rowCount() == 0) {
          $queryProcurarEmail->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
          $connection = null;
 
