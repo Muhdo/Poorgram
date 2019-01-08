@@ -257,6 +257,7 @@
             type: "POST",
             url: "includes/validations/validarRepPassword.php",
             data: {
+               newValido: "Valid",
                password: registar.password.value,
                repPassword: registar.repPassword.value
             },
@@ -291,6 +292,7 @@
                type: "POST",
                url: "includes/validations/validarRepPassword.php",
                data: {
+                  newValido: "Valid",
                   password: registar.password.value,
                   repPassword: registar.repPassword.value
                },
@@ -328,6 +330,7 @@
             type: "POST",
             url: "includes/validations/validarRepPassword.php",
             data: {
+               newValido: "Valid",
                password: registar.password.value,
                repPassword: registar.repPassword.value
             },
@@ -362,6 +365,7 @@
                type: "POST",
                url: "includes/validations/validarRepPassword.php",
                data: {
+                  newValido: "Valid",
                   password: registar.password.value,
                   repPassword: registar.repPassword.value
                },
@@ -444,6 +448,7 @@
                                                 type: "POST",
                                                 url: "includes/validations/validarRepPassword.php",
                                                 data: {
+                                                   newValido: "Valid",
                                                    password: registar.password.value,
                                                    repPassword: registar.repPassword.value
                                                 },
