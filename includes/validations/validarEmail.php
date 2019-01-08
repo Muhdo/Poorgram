@@ -1,6 +1,7 @@
 <?php
    include("../connectDB.php");
 
+   session_start();
    $email = $_POST["email"];
 
    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 255) { //Email: formato válido, menor ou igual a 255(por precaução)
@@ -15,13 +16,13 @@
          if (isset($_SESSION["User_Id"])) {
             $resultado = $queryProcurarEmail->fetchAll();
 
-            if ($resultado["Key_Utilizador"] == $_SESSION["User_Id"]) {
+            if ($resultado[0]["Key_Utilizador"] == $_SESSION["User_Id"]) {
                $queryProcurarEmail->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
                $connection = null;
 
                echo "Valid";
                exit();
-            } elseif ($resultado["Key_Utilizador"] != $_SESSION["User_Id"]) {
+            } elseif ($resultado[0]["Key_Utilizador"] != $_SESSION["User_Id"]) {
                $queryProcurarEmail->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
                $connection = null;
 

@@ -76,23 +76,6 @@ input[type="file"] {
 	transition: background-color 0.3s;
 }
 
-input[type="submit"] {
-   box-sizing: content-box;
-   max-width: 300px;
-   width: 100px;
-   margin: 0.2em;
-   padding: inherit;
-   border: none;
-   text-align: center;
-   line-height: 34px;
-   white-space: nowrap;
-   border-radius: 0.2em;
-   font-size: 16px;
-   color: #333333;
-   background-color: #CCCCCC;
-	transition: background-color 0.3s;
-}
-
 .form-filebutton {
    box-sizing: content-box;
    max-width: 300px;
@@ -189,4 +172,14 @@ button:hover {
 .btn-selected {
    background-color: #00AEFF;
    transition: background-color 0.3s;
+}
+
+.correto {
+   box-shadow: inset 2px 2px #00AA00, inset -2px -2px #00AA00, inset 2px -2px #00AA00, inset -2px 2px #00AA00;
+   border-radius: 0.2em;
+}
+
+.erro {
+   box-shadow: inset 2px 2px #FF0000, inset -2px -2px #FF0000, inset 2px -2px #FF0000, inset -2px 2px #FF0000;
+   border-radius: 0.2em;
 }

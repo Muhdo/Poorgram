@@ -43,7 +43,7 @@
          if (is_null($resultado["FotoPerfil"])) {
             $FotoPerfil = "img/profile-picture.png";
          } else {
-            $FotoPerfil = 'data:image/jpeg;base64,'.base64_encode($resultado["FotoPerfil"]);
+            $FotoPerfil = "data:image/jpeg;base64,".base64_encode($resultado["FotoPerfil"]);
          }
 
          $Descricao = $resultado["Descricao"];
@@ -89,7 +89,7 @@
                <h3 class="h3-nome"><?php echo $Nome; ?></h2>
             </div>
             <div class="div-descricao">
-               <p><?php echo $Descricao ?></p>
+               <pre><?php echo $Descricao ?></pre>
             </div>
          </div>
          <div class="div-stats">

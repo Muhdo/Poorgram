@@ -74,8 +74,8 @@
                </td>
                <td>
                   <form class="form-addphoto" action="includes/addpost.php" method="post">
-                     <label for="Imagem" class="form-filebutton">Carregar Imagem</label>
-                     <input type="file" id="Imagem" name="Imagem" accept="image/png, image/jpeg, image/JPEG, image/jpeg2000, image/jpg, image/gif">
+                     <label for="imagem" class="form-filebutton">Carregar Imagem</label>
+                     <input type="file" id="imagem" name="Imagem" accept="image/png, image/jpeg, image/JPEG, image/jpeg2000, image/jpg, image/gif">
                   </form>
                </td>
             </tr>
@@ -84,7 +84,7 @@
                   <h5>Descrição:</h5>
                </td>
                <td colspan="5">
-                  <textarea id="Descricao" name="Descricao" maxlength="255" rows="4"></textarea>
+                  <textarea id="descricao" name="Descricao" maxlength="255" rows="4"><?php echo $_SESSION["User_Descricao"]; ?></textarea>
                </td>
             </tr>
          </table>
@@ -284,6 +284,7 @@
             type: "POST",
             url: "includes/validations/validarRepPassword.php",
             data: {
+               newValido: "Valid",
                password: $("#newPassword").val(),
                repPassword: $("#repPassword").val()
             },
@@ -318,6 +319,7 @@
                type: "POST",
                url: "includes/validations/validarRepPassword.php",
                data: {
+                  newValido: "Valid",
                   password: $("#newPassword").val(),
                   repPassword: $("#repPassword").val()
                },
@@ -355,6 +357,7 @@
             type: "POST",
             url: "includes/validations/validarRepPassword.php",
             data: {
+               newValido: "Valid",
                password: $("#newPassword").val(),
                repPassword: $("#repPassword").val()
             },
@@ -389,6 +392,7 @@
                type: "POST",
                url: "includes/validations/validarRepPassword.php",
                data: {
+                  newValido: "Valid",
                   password: $("#newPassword").val(),
                   repPassword: $("#repPassword").val()
                },
@@ -406,7 +410,7 @@
          clearTimeout(Timer);
       });
 
-      $("#btn-submit").clicl(function(e) {
+      $("#btn-submit").click(function(e) {
          $.ajax({
             type: "POST",
             url: "includes/validations/validarNome.php",
@@ -453,17 +457,110 @@
                                     StyleValid("email");
                                     $("#erro-email").addClass("hidden");
 
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
-                                    //ESTA UMA MERDA FILHA DA PUTA CONA DO CARALHO
+                                    var oldPass = $("#oldPassword").val().trim();
+                                    var newPass = $("#newPassword").val();
+                                    var repPass = $("#repPassword").val();
+
+                                    if (oldPass.length > 0) {
+                                       oldPass = $("#oldPassword").val();
+
+                                    } else if (oldPass.length == 0) {
+                                       oldPass = null;
+                                       newPass = null;
+                                       repPass = null;
+                                    }
+
+                                    $.ajax({
+                                       type: "POST",
+                                       url: "includes/validations/validarOldPassword.php",
+                                       data: {
+                                          oldPassword: oldPass
+                                       },
+                                       success: function(output) {
+                                          if (output == "Error") {
+                                             StyleErro("oldPassword");
+                                          } else if (output == "Valid" || output == "Empty") {
+                                             StyleValid("oldPassword");
+
+                                             $.ajax({
+                                                type: "POST",
+                                                url: "includes/validations/validarNewPassword.php",
+                                                data: {
+                                                   oldValido: output,
+                                                   password: newPass
+                                                },
+                                                success: function(output) {
+                                                   if (output == "Error") {
+                                                      StyleErro("newPassword");
+                                                   } else if (output == "Valid" || output == "Empty") {
+                                                      StyleValid("newPassword");
+
+                                                      $.ajax({
+                                                         type: "POST",
+                                                         url: "includes/validations/validarRepPassword.php",
+                                                         data: {
+                                                            newValido: output,
+                                                            password: newPass,
+                                                            repPassword: repPass
+                                                         },
+                                                         success: function(output) {
+                                                            if (output == "Error") {
+                                                               StyleErro("repPassword");
+                                                            } else if (output == "Valid" || output == "Empty") {
+                                                               StyleValid("repPassword");
+
+                                                               try {
+                                                                  var imagem = $("#img-preview").cropper("getCroppedCanvas", {width: 400}).toDataURL("image/jpeg", 0.9);
+                                                               } catch (e) {
+                                                                  var imagem = "NoImage";
+                                                               }
+
+                                                               $.ajax({
+                                                                  type: "POST",
+                                                                  url: "includes/updateProfile.php",
+                                                                  data: {
+                                                                     nome: $("#nome").val(),
+                                                                     nickname: $("#identificador").val(),
+                                                                     email: $("#email").val(),
+                                                                     oldPassword: oldPass,
+                                                                     newPassword: newPass,
+                                                                     repPassword: repPass,
+                                                                     imagem: imagem,
+                                                                     descricao: $("#descricao").val()
+                                                                  },
+                                                                  success: function(output) {
+                                                                     if (output == "ErrorName") {
+                                                                        StyleErro("nome");
+                                                                     } else if (output == "ErrorNickname") {
+                                                                        StyleErro("identificador");
+                                                                     } else if (output == "DuplicationNickname") {
+                                                                        StyleErro("identificador");
+                                                                        $("#erro-nickname").removeClass("hidden");
+                                                                     } else if (output == "ErrorEmail") {
+                                                                        StyleErro("email");
+                                                                     } else if (output == "DuplicationEmail") {
+                                                                        StyleErro("email");
+                                                                        $("#erro-email").removeClass("hidden");
+                                                                     } else if (output == "ErrorOldPassword") {
+                                                                        StyleErro("oldPassword");
+                                                                     } else if (output == "ErrorNewPassword") {
+                                                                        StyleErro("newPassword");
+                                                                     } else if (output == "ErrorRepPassword") {
+                                                                        StyleErro("repPassword");
+                                                                     } else if (output == "Success") {
+                                                                        location.href = "perfil.php";
+                                                                     }
+                                                                  }
+                                                               });
+                                                            }
+                                                         }
+                                                      });
+                                                   }
+                                                }
+                                             });
+                                          }
+                                       }
+                                    });
                                  }
                               }
                            });
@@ -528,24 +625,6 @@
             $("#img-preview").cropper("reset");
          })
       });
-
-      $("#btn-submit").click(function() {
-         var imagem = $("#img-preview").cropper("getCroppedCanvas", {width: 900}).toDataURL("image/jpeg", 0.9);
-         $.ajax({
-            type: "POST",
-            url: "includes/addpost.php",
-            data: {
-               imageData: imagem
-            },
-            success: function(output) {
-               if (output == "Add") {
-                  location.href = "perfil.php";
-               } else if (output == "Error") {
-                  location.href = "index.php";
-               }
-            }
-         });
-      })
    </script>
 </body>
 

@@ -34,7 +34,7 @@
          $_SESSION["User_Nickname"] = $row[0]["NomeUnico"];
          $_SESSION["User_Nome"] = $row[0]["Nome"];
          $_SESSION["User_Email"] = $row[0]["Email"];
-         $_SESSION["User_FotoPerfil"] = $row[0]["FotoPerfil"];
+         $_SESSION["User_FotoPerfil"] = "data:image/jpeg;base64,".base64_encode($row[0]["FotoPerfil"]);
          $_SESSION["User_Descricao"] = $row[0]["Descricao"];
 
          //Fechar conexões

@@ -1,6 +1,7 @@
 <?php
    include("../connectDB.php");
 
+   session_start();
    $nickname = $_POST["nickname"];
 
    if (strlen($nickname) < 5 || strlen($nickname) > 20) { //Nickname: Maior ou igual a 5, menor ou igual a 20
@@ -15,13 +16,13 @@
          if (isset($_SESSION["User_Id"])) {
             $resultado = $queryProcurarNickname->fetchAll();
 
-            if ($resultado["Key_Utilizador"] == $_SESSION["User_Id"]) {
+            if ($resultado[0]["Key_Utilizador"] == $_SESSION["User_Id"]) {
                $queryProcurarNickname->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
                $connection = null;
 
                echo "Valid";
                exit();
-            } elseif ($resultado["Key_Utilizador"] != $_SESSION["User_Id"]) {
+            } elseif ($resultado[0]["Key_Utilizador"] != $_SESSION["User_Id"]) {
                $queryProcurarNickname->closeCursor(); //Terminar a ligação para nao existir ligações desnecessárias abertas
                $connection = null;
 

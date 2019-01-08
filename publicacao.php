@@ -189,7 +189,7 @@
             $("#deletePost").attr("src", "img/delete-red.png");
             $(".delete-text").removeClass("hidden");
 
-            if((tempo - ultimoClick <= 3000 && tempo - ultimoClick >= 150) && ultimoPost == PublicacaoId) {
+            if((tempo - ultimoClick <= 3000 && tempo - ultimoClick >= 200) && ultimoPost == PublicacaoId) {
                $.ajax({
                   type: "POST",
                   data: { chave: PublicacaoId },
