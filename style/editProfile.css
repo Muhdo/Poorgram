@@ -14,6 +14,10 @@
    text-align: right;
 }
 
+.img-profile {
+   border-radius: 50%;
+}
+
 h5 {
    margin: 5px;
    margin-right: 0px;

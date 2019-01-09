@@ -33,7 +33,7 @@
             $queryLoadFeed->execute();
 
             if ($queryLoadFeed->rowCount() == 0) {
-               echo "Ainda não segues ninguem!\nProcura pelos teus amigos (se tiveres) na barra de pesquisa em cima!";
+               echo "Ainda não há publicações para ver!<br>Procura pelos teus amigos (se tiveres) na barra de pesquisa em cima!";
             } elseif ($queryLoadFeed->rowCount() >= 1) {
                foreach ($queryLoadFeed->fetchAll() as $resultado) {
 

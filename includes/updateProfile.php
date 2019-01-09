@@ -75,7 +75,7 @@
                            $_SESSION["User_Nickname"] = $resultado[0]["NomeUnico"];
                            $_SESSION["User_Nome"] = $resultado[0]["Nome"];
                            $_SESSION["User_Email"] = $resultado[0]["Email"];
-                           $_SESSION["User_FotoPerfil"] = $resultado[0]["FotoPerfil"];
+                           $_SESSION["User_FotoPerfil"] = "data:image/jpeg;base64,".base64_encode($resultado[0]["FotoPerfil"]);
                            $_SESSION["User_Descricao"] = $resultado[0]["Descricao"];
 
                            echo "Success";

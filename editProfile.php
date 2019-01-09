@@ -22,6 +22,7 @@
 <body>
    <main>
       <div class="div-form">
+         <img class="img-profile" src="<?php if ($_SESSION["User_FotoPerfil"] == "data:image/jpeg;base64,") { echo "img/profile-picture.png"; } else { echo $_SESSION["User_FotoPerfil"]; } ?>" width="200" height="200">
          <h3 class="h3-aviso hidden"> Não foi possivel alterar a Password!<br>Não foram salvas nenhumas alterações.</h3>
          <table class="table-form">
             <tr>
