@@ -161,9 +161,12 @@
 }
 
 .div-comment {
+   background-color: #494949;
    align-items: baseline;
    justify-content: left;
    display: flex;
+   border-radius: 5px;
+   margin: 5px 0px;
 }
 
 .div-comment .a-comment-account {
