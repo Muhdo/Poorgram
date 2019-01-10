@@ -98,7 +98,7 @@
                <h4 class="value"><?php echo $NumFollowers; ?></h4>
             </div>
             <div class="div-stats-following">
-               <h4 class="text">Seguindo</h4>
+               <h4 class="text">A Seguir</h4>
                <h4 class="value"><?php echo $NumFollowing; ?></h4>
             </div>
             <div class="div-stats-posts">
@@ -142,12 +142,6 @@
                         <img class="gallery-image" src="'.$imagem.'">
                      </a>
          			</div>';
-               }
-
-               if ($NumPosts % 3 != 0) {
-                  for ($i=0; $i <= ($NumPosts % 3); $i++) {
-                     echo '<div class="gallery-item-hidden"></div>';
-                  }
                }
             ?>
          </div>

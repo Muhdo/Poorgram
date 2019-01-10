@@ -155,14 +155,7 @@ a {
    margin: 1rem;
    color: #fff;
    cursor: pointer;
-}
-
-.gallery-item-hidden {
-   position: relative;
-   flex: 1 0 22rem;
-   margin: 1rem;
-   color: #fff;
-   cursor: default;
+   max-width: calc((100% / 3) - 32px);
 }
 
 .gallery-image {
