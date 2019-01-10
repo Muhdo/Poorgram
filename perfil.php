@@ -98,7 +98,7 @@
                <h4 class="value"><?php echo $NumFollowers; ?></h4>
             </div>
             <div class="div-stats-following">
-               <h4 class="text">Seguindo</h4>
+               <h4 class="text">A Seguir</h4>
                <h4 class="value"><?php echo $NumFollowing; ?></h4>
             </div>
             <div class="div-stats-posts">

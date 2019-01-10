@@ -49,7 +49,6 @@
       <div class="div-direita">
          <div class="div-conteudo">
             <form class="div-form" name="registar" method="POST" action="includes/action_registar.php">
-               <button class="button-facebook" id="facebook" type="button" onClick="MudarFace()">Login com Facebook</button>
                <div class="tooltip">
                   <input class="form-input" id="nome" type="text" name="nome" value="<?php echo $nome; ?>" maxlength="30" placeholder="Nome Ex: Jossefino Andrade" required>
                   <span class="tooltiptext">Nome Próprio<br>Até 30 caracteres.</span>
@@ -91,10 +90,6 @@
       function StyleValid(input) {
          document.getElementById(input).classList.remove("form-input-erro");
          document.getElementById(input).classList.add("form-input-correto");
-      }
-
-      function MudarFace() {
-         document.getElementById("facebook").innerHTML = "Esquece, não funfa!";
       }
 
       var Timer;

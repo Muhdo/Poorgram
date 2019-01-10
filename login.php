@@ -26,7 +26,6 @@
       <div class="div-direita">
          <div class="div-conteudo">
             <form class="div-form" name="login" method="POST" action="includes/search_login.php">
-               <button class="button-facebook" id="facebook" type="button" onClick="mudarFace()">Login com Facebook</button>
                <div class="tooltip">
                   <input class="form-input" id="email" type="text" name="email" placeholder="Email Ex: JossefinoAndrade420@gamaile.come">
                   <span class="tooltiptext">Email da conta</span>
