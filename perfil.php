@@ -138,7 +138,7 @@
                   $imagem = 'data:image/jpeg;base64,'.base64_encode($resultado["Publicacao"]);
                   $postkey = $resultado["Key_Publicacao"];
                   echo '<div class="gallery-item">
-                     <a href="publicacao.php?'.$postkey.'">
+                     <a class="a-post" href="publicacao.php?'.$postkey.'">
                         <img class="gallery-image" src="'.$imagem.'">
                      </a>
          			</div>';

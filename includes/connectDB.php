@@ -1,10 +1,10 @@
 <?php
    try {
-   $connection = new PDO("mysql:host=localhost;dbname=poorgram", "root", ""); //Ligação a utilizar PDO
-   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Atribui o modo de erros
+   $connection = new PDO("mysql:host=localhost;dbname=poorgram", "root", "");
+   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    }
    catch(PDOException $e)
    {
-   echo "A conexão falhou!: " . $e->getMessage(); //Caso não seja possivel ligar à base de dados
+   echo "A conexão falhou!: " . $e->getMessage();
    }
 ?>

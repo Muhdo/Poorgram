@@ -71,6 +71,8 @@ a {
    height: auto;
    margin: auto;
    margin-right: 10px;
+   white-space: pre-wrap;
+   word-wrap: break-word;
 }
 
 .div-stats {
@@ -155,12 +157,22 @@ a {
    margin: 1rem;
    color: #fff;
    cursor: pointer;
+   border-radius: 5px;
    max-width: calc((100% / 3) - 32px);
+   overflow: hidden;
+}
+
+.a-post {
+   margin: auto;
+   text-decoration: none;
 }
 
 .gallery-image {
    width: 100%;
    height: auto;
-   object-fit: cover;
-   border-radius: 5px;
+   transition: transform 0.5s ease;
+}
+
+.gallery-image:hover {
+   transform: scale(1.3);
 }

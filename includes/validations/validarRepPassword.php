@@ -4,8 +4,8 @@
    $repPassword = $_POST["repPassword"];
 
    if ($newValido == "Valid") {
-      if ($password != $repPassword) { //repPassword: São iguais
-         echo "Error";  //Voltar para a página anterior
+      if ($password != $repPassword) {
+         echo "Error";
          exit();
       } else {
          echo "Valid";
