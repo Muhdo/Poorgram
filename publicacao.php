@@ -178,7 +178,6 @@
          var ultimoClick = 0;
          var ultimoPost;
          var Timer;
-         var Intervalo = 3000;
 
          function DeletePost(PublicacaoId) {
             clearTimeout(Timer);
@@ -212,7 +211,7 @@
                $(".delete-text").addClass("hidden");
                ultimoClick = 0;
                ultimoPost = undefined;
-            }, Intervalo);
+            }, 3000);
          }
       </script>
    </main>

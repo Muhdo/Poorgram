@@ -26,7 +26,8 @@
             INNER JOIN utilizador ON publicacao.Key_Utilizador = utilizador.Key_Utilizador
             INNER JOIN seguir ON publicacao.Key_Utilizador = seguir.Key_Seguir
             WHERE
-            	publicacao.Key_Utilizador = seguir.Key_Seguir AND seguir.Key_Utilizador = :Utilizador
+            	(publicacao.Key_Utilizador = seguir.Key_Seguir AND seguir.Key_Utilizador = :Utilizador) OR
+               (publicacao.Key_Utilizador = :Utilizador)
             ORDER BY Data DESC
             LIMIT 100");
             $queryLoadFeed->bindParam(":Utilizador", $_SESSION["User_Id"], PDO::PARAM_STR);
