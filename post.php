@@ -1,4 +1,5 @@
 <head>
+
    <link rel="stylesheet" href="style/post.css">
    <script src="node_modules/jquery/dist/jquery.js"></script>
 </head>
